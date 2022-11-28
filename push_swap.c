@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/28 19:00:29 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/11/28 22:16:32 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	push(t_stack *A, t_stack *B);
 void	show_stack_row(t_stack *A, int row);
 void	show_stacks(t_stack *A, t_stack *B);
 void	execute_command(char *user_input, t_stack *A, t_stack *B);
+void	swap(t_stack *A);
+
 
 int	main(int argc, char const *argv[])
 {
@@ -45,6 +47,7 @@ int	main(int argc, char const *argv[])
 		{
 			a->tab[argc - 2] = atoi(argv[argc - 1]);
 			a->size++;
+            show_stacks(a, b);
 			argc--;
 		}
 	}
@@ -84,7 +87,7 @@ void	show_stacks(t_stack *A, t_stack *B)
 void	show_stack_row(t_stack *A, int row)
 {
 	if (A->size >= row) // n'affiche pas les stack dans le bon sens (et a mon avis, ca push pas dans le bon sens non plus)
-		printf("\t%d", A->tab[row - 1]);
+		printf("\t%d", A->tab[A->size - row ]);
 	else
 		printf("\t.");
 }
@@ -117,13 +120,8 @@ void	push(t_stack *A, t_stack *B)
 	int	i;
 
 	i = 0;
-	B->tab[B->size] = A->tab[0];
+	B->tab[B->size] = A->tab[A->size - 1];
 	B->size++;
-	while (i < A->size)
-	{
-		A->tab[i] = A->tab[i + 1];
-		i++;
-	}
 	A->size--;
 }
 
@@ -134,11 +132,4 @@ void	swap(t_stack *A)
 	tmp = A->tab[A->size - 1];
 	A->tab[A->size - 1] = A->tab[A->size - 2];
 	A->tab[A->size - 2] = tmp;
-	B->size++;
-	while (i < A->size)
-	{
-		A->tab[i] = A->tab[i + 1];
-		i++;
-	}
-	A->size--;
 }
