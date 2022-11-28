@@ -6,62 +6,139 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/27 19:13:16 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/11/28 19:00:29 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
-void	p(int *stack, char *s);
+typedef struct s_stack
+{
+	int		*tab;
+	size_t	size;	
+}	t_stack;
+
+void	push(t_stack *A, t_stack *B);
+void	show_stack_row(t_stack *A, int row);
+void	show_stacks(t_stack *A, t_stack *B);
+void	execute_command(char *user_input, t_stack *A, t_stack *B);
 
 int	main(int argc, char const *argv[])
 {
-	int		*A;
+	t_stack	*a;
+	t_stack	*b;
 	int		i;
 	char	*user_input;
 
 	i = 1;
-	A = malloc(sizeof(int) * argc - 1);
-	while (i < argc)
-	{
-		A[i] = NULL;
-		i++;
-	}
+	a = malloc(sizeof(int *) + sizeof(size_t));
+	a->tab = malloc(sizeof(int) * argc - 1);
+	b = malloc(sizeof(int *) + sizeof(size_t));
+	b->tab = malloc(sizeof(int) * argc - 1);
+	a->size = 0;
+	b->size = 0;
 	if (argc > 1)
 	{
 		while (argc > 1)
 		{
-			A[argc - 2] = atoi(argv[argc - 1]);
+			a->tab[argc - 2] = atoi(argv[argc - 1]);
+			a->size++;
 			argc--;
 		}
 	}
-	user_input = malloc(sizeof(char) * 3);
-	read(1, user_input, 3);
+ 	user_input = malloc(sizeof(char) * 3);
+	//read(1, user_input, 3);
 	while (user_input[0] != 'e')
 	{
-		execute_command(user_input, A);
+		show_stacks(a, b);
+		execute_command("pb", a, b);
+		show_stacks(a, b);
+		execute_command("pb", a, b);
+		show_stacks(a, b);
+		execute_command("pa", a, b);
 		read(1, user_input, 3);
 	}
 	return (0);
 }
 
-void	execute_command(char *user_input, int *A, int *B)
+void	show_stacks(t_stack *A, t_stack *B)
 {
+	int	top_row;
+
+	top_row = A->size;
+	if (B->size > top_row)
+		top_row = B->size;
+	printf("\n");
+	while (top_row)
+	{
+		show_stack_row(A, top_row);
+		show_stack_row(B, top_row);
+		printf("\n");
+		top_row--;
+	}
+	printf("\tA\tB\n");
+}
+
+void	show_stack_row(t_stack *A, int row)
+{
+	if (A->size >= row) // n'affiche pas les stack dans le bon sens (et a mon avis, ca push pas dans le bon sens non plus)
+		printf("\t%d", A->tab[row - 1]);
+	else
+		printf("\t.");
+}
+
+void	execute_command(char *user_input, t_stack *A, t_stack *B)
+{
+	int	i;
+
+	i = 0;
 	if (user_input[0] == 'p')
 	{
 		printf("p%c\n", user_input[1]);
-		if (user_input[1] == 'a' && B[0])
-			p(A, B)
+		if (user_input[1] == 'a' && B->size)
+			push(B, A);
+		if (user_input[1] == 'b' && A->size)
+			push(A, B);
+	}
+	if (user_input[0] == 's')
+	{
+		printf("s%c\n", user_input[1]);
+		if (user_input[1] == 'a' && B->size)
+			swap(B);
+		if (user_input[1] == 'b' && A->size)
+			swap(A);
 	}
 }
 
-
-
-void	p(int *stack, char *s)
+void	push(t_stack *A, t_stack *B)
 {
-	static int i;
+	int	i;
 
-	stack[i] = atoi(s);
-	i++;
+	i = 0;
+	B->tab[B->size] = A->tab[0];
+	B->size++;
+	while (i < A->size)
+	{
+		A->tab[i] = A->tab[i + 1];
+		i++;
+	}
+	A->size--;
+}
+
+void	swap(t_stack *A)
+{
+	int	tmp;
+
+	tmp = A->tab[A->size - 1];
+	A->tab[A->size - 1] = A->tab[A->size - 2];
+	A->tab[A->size - 2] = tmp;
+	B->size++;
+	while (i < A->size)
+	{
+		A->tab[i] = A->tab[i + 1];
+		i++;
+	}
+	A->size--;
 }
