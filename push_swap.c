@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/29 13:59:16 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/11/29 19:50:48 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	show_stack_row(t_stack *A, int row);
 void	show_stacks(t_stack *A, t_stack *B);
 void	execute_command(char *user_input, t_stack *A, t_stack *B);
 void	swap(t_stack *A);
-
+void	rotate(t_stack *A);
+void	rotate_reverse(t_stack *A);
 
 int	main(int argc, char const *argv[])
 {
@@ -51,15 +52,21 @@ int	main(int argc, char const *argv[])
 	}
 	show_stacks(a, b);
  	user_input = malloc(sizeof(char) * 3);
-	//read(1, user_input, 3);
+	read(1, user_input, 3);
 	while (user_input[0] != 'e')
 	{
 		show_stacks(a, b);
-		execute_command("pb", a, b);
+		execute_command("sa", a, b);
 		show_stacks(a, b);
 		execute_command("pb", a, b);
-		show_stacks(a, b);
 		execute_command("pb", a, b);
+		execute_command("pb", a, b);
+		show_stacks(a, b);
+		execute_command("rr", a, b);
+		show_stacks(a, b);
+		execute_command("rb", a, b);
+		show_stacks(a, b);
+
 		read(1, user_input, 3);
 	}
 	return (0);
@@ -107,11 +114,75 @@ void	execute_command(char *user_input, t_stack *A, t_stack *B)
 	if (user_input[0] == 's')
 	{
 		printf("s%c\n", user_input[1]);
-		if (user_input[1] == 'a' && B->size)
-			swap(B);
-		if (user_input[1] == 'b' && A->size)
+		if (user_input[1] == 'a')
 			swap(A);
+		if (user_input[1] == 'b')
+			swap(B);
+		if (user_input[1] == 's')
+		{
+			swap(A);
+			swap(B);
+		}
 	}
+	if (user_input[0] == 'r')
+	{
+		printf("r%c\n", user_input[1]);
+		if (user_input[1] == 'a')
+			rotate(A);
+		if (user_input[1] == 'b')
+			rotate(B);
+		if (user_input[1] == 'r' && user_input[2] != 'a' && user_input[2] != 'b')
+		{
+			rotate(A);
+			rotate(B);
+		}
+		if (user_input[1] == 'r')
+		{
+			if (user_input[2] == 'a')
+				rotate_reverse(A);
+			if (user_input[2] == 'b')
+				rotate_reverse(B);
+			if (user_input[2] == 'r')
+			{
+				rotate_reverse(A);
+				rotate_reverse(B);
+			}
+		}
+	}
+}
+
+void	rotate(t_stack *A)
+{
+	int	last;
+	int	tmp;
+	int	i;
+
+	i = 0;
+	last = A->size - 1; // pb ici 
+	tmp = A->tab[last];
+	while (i < last)
+	{
+		A->tab[i] = A->tab[i + 1];
+		i++;
+	}
+	A->tab[last] = tmp;
+}
+
+void	rotate_reverse(t_stack *A)
+{
+	int	last;
+	int	tmp;
+	int	i;
+
+	i = 0;
+	last = A->size - 1;
+	tmp = A->tab[last];
+	while (i < last)
+	{
+		A->tab[last - i] = A->tab[last - i - 1];
+		i++;
+	}
+	A->tab[0] = A->tab[tmp];
 }
 
 void	push(t_stack *A, t_stack *B)
@@ -139,7 +210,7 @@ void	swap(t_stack *A)
 {
 	int	tmp;
 
-	tmp = A->tab[A->size - 1];
-	A->tab[A->size - 1] = A->tab[A->size - 2];
-	A->tab[A->size - 2] = tmp;
+	tmp = A->tab[0];
+	A->tab[0] = A->tab[1];
+	A->tab[1] = tmp;
 }
