@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/28 22:16:32 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/11/29 10:54:09 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,14 @@ int	main(int argc, char const *argv[])
 	a->tab = malloc(sizeof(int) * argc - 1);
 	b = malloc(sizeof(int *) + sizeof(size_t));
 	b->tab = malloc(sizeof(int) * argc - 1);
-	a->size = 0;
 	b->size = 0;
+	a->size = argc - 1;
 	if (argc > 1)
 	{
 		while (argc > 1)
 		{
 			a->tab[argc - 2] = atoi(argv[argc - 1]);
-			a->size++;
-            show_stacks(a, b);
+			show_stacks(a, b);
 			argc--;
 		}
 	}
