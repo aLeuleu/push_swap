@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/29 10:54:09 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/11/29 13:59:16 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	main(int argc, char const *argv[])
 		while (argc > 1)
 		{
 			a->tab[argc - 2] = atoi(argv[argc - 1]);
-			show_stacks(a, b);
 			argc--;
 		}
 	}
+	show_stacks(a, b);
  	user_input = malloc(sizeof(char) * 3);
 	//read(1, user_input, 3);
 	while (user_input[0] != 'e')
@@ -59,7 +59,7 @@ int	main(int argc, char const *argv[])
 		show_stacks(a, b);
 		execute_command("pb", a, b);
 		show_stacks(a, b);
-		execute_command("pa", a, b);
+		execute_command("pb", a, b);
 		read(1, user_input, 3);
 	}
 	return (0);
@@ -119,8 +119,19 @@ void	push(t_stack *A, t_stack *B)
 	int	i;
 
 	i = 0;
-	B->tab[B->size] = A->tab[A->size - 1];
 	B->size++;
+	while ((i + 1) < B->size)
+	{
+		B->tab[B->size - 1] = B->tab[B->size - 1 - (i + 1)];
+		i++;
+	}
+	i = 0;
+	B->tab[0] = A->tab[0];
+	while ((i+1) < A->size)
+	{
+		A->tab[i] = A->tab[i + 1];
+		i++;
+	}
 	A->size--;
 }
 
