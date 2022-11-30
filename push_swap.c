@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/30 14:37:05 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/11/30 22:16:21 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,57 @@ int	main(int argc, char const *argv[])
 	}
  	user_input = malloc(sizeof(char) * 3);
 	read(1, user_input, 3);
-	while (user_input[0] != 'e')
-	{
-		show_stacks(a, b);
-		execute_command("sa", a, b);
-		show_stacks(a, b);
-		execute_command("pb", a, b);
-		execute_command("pb", a, b);
-		execute_command("pb", a, b);
-		show_stacks(a, b);
-		execute_command("rr", a, b);
-		show_stacks(a, b);
-		execute_command("rrr", a, b);
-		show_stacks(a, b);
-		execute_command("sa", a, b);
-		show_stacks(a, b);
-		execute_command("pa", a, b);
-		execute_command("pa", a, b);
-		execute_command("pa", a, b);
-		show_stacks(a, b);
 
-		read(1, user_input, 3);
+	if (is_stack_sorted(a))
+	{
+		return (0);
 	}
+	while (!is_stack_sorted(a))
+	{
+		if (a->tab[0] < a->tab[1])
+			execute_command("pb", a, b);
+		else
+			execute_command("sa", a, b);
+	}
+	while (b->size > 0)
+		execute_command("pa", a, b);
+	show_stacks(a, b);
+	printf("Stack sorted : %d\n", is_stack_sorted(a));
+	read(1, user_input, 3);
+
 	return (0);
+}
+
+int	is_stack_reverse_sorted(t_stack *A)
+{
+	size_t	i;
+	int		is_rsorted;
+
+	i = 0;
+	is_rsorted = 1;
+	while (i + 1 < A->size - 1)
+	{
+		if (A->tab[i + 1] > A->tab[i])
+			is_rsorted = 0;
+		i++;
+	}
+	return (is_rsorted);
+}
+
+int	is_stack_sorted(t_stack *A)
+{
+	size_t	i;
+	int		is_sorted;
+
+	i = 0;
+	is_sorted = 1;
+	while (i + 1 < A->size - 1)
+	{
+		if (A->tab[i + 1] < A->tab[i])
+			is_sorted = 0;
+		i++;
+	}
+	return (is_sorted);
 }
 
 void	show_stacks(t_stack *A, t_stack *B)
@@ -135,7 +163,7 @@ void	execute_command(char *user_input, t_stack *A, t_stack *B)
 			rotate(A);
 		if (user_input[1] == 'b')
 			rotate(B);
-		if (user_input[1] == 'r' && user_input[2] != 'a' && user_input[2] != 'b' && user_input[2] != 'r')
+		if (user_input[1] == 'r' && user_input[2] != 'a' && user_input[2] != 'b' && user_input[2] != 'r') 
 		{
 			rotate(A);
 			rotate(B);
