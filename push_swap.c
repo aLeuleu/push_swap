@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/29 19:50:48 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/11/30 11:43:46 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int argc, char const *argv[])
 			argc--;
 		}
 	}
-	show_stacks(a, b);
  	user_input = malloc(sizeof(char) * 3);
 	read(1, user_input, 3);
 	while (user_input[0] != 'e')
@@ -64,7 +63,13 @@ int	main(int argc, char const *argv[])
 		show_stacks(a, b);
 		execute_command("rr", a, b);
 		show_stacks(a, b);
-		execute_command("rb", a, b);
+		execute_command("rrr", a, b);
+		show_stacks(a, b);
+		execute_command("sa", a, b);
+		show_stacks(a, b);
+		execute_command("pa", a, b);
+		execute_command("pa", a, b);
+		execute_command("pa", a, b);
 		show_stacks(a, b);
 
 		read(1, user_input, 3);
@@ -103,9 +108,10 @@ void	execute_command(char *user_input, t_stack *A, t_stack *B)
 	int	i;
 
 	i = 0;
+	printf(user_input);
+	printf("\n");
 	if (user_input[0] == 'p')
 	{
-		printf("p%c\n", user_input[1]);
 		if (user_input[1] == 'a' && B->size)
 			push(B, A);
 		if (user_input[1] == 'b' && A->size)
@@ -113,7 +119,6 @@ void	execute_command(char *user_input, t_stack *A, t_stack *B)
 	}
 	if (user_input[0] == 's')
 	{
-		printf("s%c\n", user_input[1]);
 		if (user_input[1] == 'a')
 			swap(A);
 		if (user_input[1] == 'b')
@@ -126,12 +131,11 @@ void	execute_command(char *user_input, t_stack *A, t_stack *B)
 	}
 	if (user_input[0] == 'r')
 	{
-		printf("r%c\n", user_input[1]);
 		if (user_input[1] == 'a')
 			rotate(A);
 		if (user_input[1] == 'b')
 			rotate(B);
-		if (user_input[1] == 'r' && user_input[2] != 'a' && user_input[2] != 'b')
+		if (user_input[1] == 'r' && user_input[2] != 'a' && user_input[2] != 'b' && user_input[2] != 'r') //quand rrr passe a la fois ici et ailleurs...
 		{
 			rotate(A);
 			rotate(B);
@@ -158,8 +162,8 @@ void	rotate(t_stack *A)
 	int	i;
 
 	i = 0;
-	last = A->size - 1; // pb ici 
-	tmp = A->tab[last];
+	last = A->size - 1;
+	tmp = A->tab[0];
 	while (i < last)
 	{
 		A->tab[i] = A->tab[i + 1];
@@ -182,18 +186,18 @@ void	rotate_reverse(t_stack *A)
 		A->tab[last - i] = A->tab[last - i - 1];
 		i++;
 	}
-	A->tab[0] = A->tab[tmp];
+	A->tab[0] = tmp;
 }
 
 void	push(t_stack *A, t_stack *B)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	B->size++;
-	while ((i + 1) < B->size)
+	while (i < B->size)
 	{
-		B->tab[B->size - 1] = B->tab[B->size - 1 - (i + 1)];
+		B->tab[B->size - i] = B->tab[B->size - (i + 1)];
 		i++;
 	}
 	i = 0;
