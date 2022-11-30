@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/30 11:43:46 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/11/30 14:37:05 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	execute_command(char *user_input, t_stack *A, t_stack *B)
 			rotate(A);
 		if (user_input[1] == 'b')
 			rotate(B);
-		if (user_input[1] == 'r' && user_input[2] != 'a' && user_input[2] != 'b' && user_input[2] != 'r') //quand rrr passe a la fois ici et ailleurs...
+		if (user_input[1] == 'r' && user_input[2] != 'a' && user_input[2] != 'b' && user_input[2] != 'r')
 		{
 			rotate(A);
 			rotate(B);
