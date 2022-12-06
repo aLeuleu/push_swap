@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/11/30 22:16:21 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/06 19:31:36 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_stack
 void	push(t_stack *A, t_stack *B);
 void	show_stack_row(t_stack *A, int row);
 void	show_stacks(t_stack *A, t_stack *B);
-void	execute_command(char *user_input, t_stack *A, t_stack *B);
+int		execute_command(char *user_input, t_stack *A, t_stack *B);
 void	swap(t_stack *A);
 void	rotate(t_stack *A);
 void	rotate_reverse(t_stack *A);
@@ -34,6 +34,8 @@ int	main(int argc, char const *argv[])
 	t_stack	*b;
 	int		i;
 	char	*user_input;
+	int		min;
+	int		min_pos;
 
 	i = 1;
 	a = malloc(sizeof(int *) + sizeof(size_t));
@@ -50,27 +52,115 @@ int	main(int argc, char const *argv[])
 			argc--;
 		}
 	}
- 	user_input = malloc(sizeof(char) * 3);
+	user_input = malloc(sizeof(char) * 3);
 	read(1, user_input, 3);
-
+	show_stacks(a, b);
 	if (is_stack_sorted(a))
-	{
 		return (0);
-	}
-	while (!is_stack_sorted(a))
+	while (a->size != 0)
 	{
-		if (a->tab[0] < a->tab[1])
-			execute_command("pb", a, b);
+		min = get_min_stack(a);
+		min_pos = get_min_pos_stack(a);
+/* 		printf("min : %d\n", min);
+		printf("min pos : %d\n", min_pos);
+		printf("stack size : %d\n", a->size);
+		printf("stack size/2 : %d\n", (a->size) / 2);
+		printf("min_pos + 1 < (a->size) / 2 : "); */
+		if (min_pos + 1 < (a->size) / 2)
+		{
+			//printf("TRUE\n");
+			while (a->tab[0] != min)
+				execute_command("ra", a, b);
+		}
 		else
-			execute_command("sa", a, b);
+		{
+			//printf("FALSE\n");
+			while (a->tab[0] != min)
+				execute_command("rra", a, b);
+		}
+		execute_command("pb", a, b);
+		//show_stacks(a, b);
 	}
 	while (b->size > 0)
-		execute_command("pa", a, b);
+		printf("%d ", execute_command("pa", a, b));
 	show_stacks(a, b);
 	printf("Stack sorted : %d\n", is_stack_sorted(a));
 	read(1, user_input, 3);
-
 	return (0);
+}
+
+int	get_max_stack(t_stack *A)
+{
+	int	i;
+	int	max;
+
+	max = A->tab[0];
+	i = 1;
+	while (i < (A->size))
+	{
+		if (A->tab[i] > max)
+			max = A->tab[i];
+		i++;
+	}
+	return (max);
+}
+
+int	get_max_pos_stack(t_stack *A)
+{
+	int	i;
+	int	max;
+	int	pos;
+
+	max = A->tab[0];
+	pos = 0;
+	i = 1;
+	while (i < (A->size))
+	{
+		if (A->tab[i] > max)
+		{
+			max = A->tab[i];
+			pos = i;
+		}
+		i++;
+	}
+	return (pos);
+}
+
+int	get_min_stack(t_stack *A)
+{
+	int	i;
+	int	min;
+
+	min = A->tab[0];
+	i = 1;
+	while (i < (A->size))
+	{
+		if (A->tab[i] < min)
+			min = A->tab[i];
+		i++;
+	}
+	return (min);
+}
+
+int	get_min_pos_stack(t_stack *A)
+{
+	int	i;
+	int	min;
+	int	pos;
+
+	min = A->tab[0];
+	pos = 0;
+	i = 1;
+	while (i < (A->size))
+	{
+		if (A->tab[i] < min)
+		{
+			min = A->tab[i];
+			pos = i;
+		}
+		i++;
+	}
+	return (pos);
 }
 
 int	is_stack_reverse_sorted(t_stack *A)
@@ -125,16 +215,18 @@ void	show_stacks(t_stack *A, t_stack *B)
 
 void	show_stack_row(t_stack *A, int row)
 {
-	if (A->size >= row) // n'affiche pas les stack dans le bon sens (et a mon avis, ca push pas dans le bon sens non plus)
+	if (A->size >= row)
 		printf("\t%d", A->tab[A->size - row ]);
 	else
 		printf("\t.");
 }
 
-void	execute_command(char *user_input, t_stack *A, t_stack *B)
+int	execute_command(char *user_input, t_stack *A, t_stack *B)
 {
-	int	i;
-
+	int			i;
+	static int	nb_command;
+	
+	nb_command++;
 	i = 0;
 	printf(user_input);
 	printf("\n");
@@ -181,6 +273,7 @@ void	execute_command(char *user_input, t_stack *A, t_stack *B)
 			}
 		}
 	}
+	return (nb_command);
 }
 
 void	rotate(t_stack *A)
