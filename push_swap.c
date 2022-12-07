@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/06 19:31:36 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/07 19:40:24 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	main(int argc, char const *argv[])
 	show_stacks(a, b);
 	if (is_stack_sorted(a))
 		return (0);
-	while (a->size != 0)
+	while (a->size != 0 && !is_stack_sorted(a))
 	{
+		if (a->tab[0] > a->tab[1])
+			execute_command("sa", a ,b);
 		min = get_min_stack(a);
 		min_pos = get_min_pos_stack(a);
 /* 		printf("min : %d\n", min);
