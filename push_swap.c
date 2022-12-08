@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/07 19:40:24 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/08 02:48:43 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int		execute_command(char *user_input, t_stack *A, t_stack *B);
 void	swap(t_stack *A);
 void	rotate(t_stack *A);
 void	rotate_reverse(t_stack *A);
+void	short_sort(t_stack *a, t_stack* b);
+int		get_radix_max_index(t_stack* A);
 
 int	main(int argc, char const *argv[])
 {
@@ -36,6 +38,7 @@ int	main(int argc, char const *argv[])
 	char	*user_input;
 	int		min;
 	int		min_pos;
+	int		radix_index;
 
 	i = 1;
 	a = malloc(sizeof(int *) + sizeof(size_t));
@@ -53,42 +56,80 @@ int	main(int argc, char const *argv[])
 		}
 	}
 	user_input = malloc(sizeof(char) * 3);
-	read(1, user_input, 3);
 	show_stacks(a, b);
+	printf("Radix max index : %d\n", get_radix_max_index(a));
 	if (is_stack_sorted(a))
 		return (0);
+	i = 0;
+	if (a->size < 10)
+		short_sort(a,b);
+	else
+	{
+		while(i < radix_index)
+			radix_sort_index(i++, a, b);
+	}
+	show_stacks(a, b);
+	printf("Stack sorted : %d\n", is_stack_sorted(a));
+	read(1, user_input, 3);
+	return (0);
+}
+
+int	radix_sort_index(int index, t_stack *A, t_stack *B)
+{
+	int	i;
+
+	i = 0;
+	while(i < A->size)
+		// if bit == 0, push the whole number in b 
+		if ((A->tab[i++] >> index)%2 == 0)
+			execute_command("pb", A, B);
+	while(B->size)
+		execute_command("pa", A, B);
+}
+
+int get_radix_max_index(t_stack* A)
+{
+	int	i;
+	int	max;
+
+	max =0;
+	i = 0;
+	while (i < (A->size))
+	{
+		while ((A->tab[i] >> max) != 0)
+			max++;
+		i++;
+	}
+	return (max);
+}
+
+void	short_sort(t_stack *a, t_stack *b)
+{
+	int min_pos;
+	int	min;
+	
+	printf("short sort\n"); //debug
 	while (a->size != 0 && !is_stack_sorted(a))
 	{
-		if (a->tab[0] > a->tab[1])
-			execute_command("sa", a ,b);
 		min = get_min_stack(a);
 		min_pos = get_min_pos_stack(a);
-/* 		printf("min : %d\n", min);
-		printf("min pos : %d\n", min_pos);
-		printf("stack size : %d\n", a->size);
-		printf("stack size/2 : %d\n", (a->size) / 2);
-		printf("min_pos + 1 < (a->size) / 2 : "); */
+		if (a->tab[0] > a->tab[1])
+			execute_command("sa", a ,b);
+		min_pos = get_min_pos_stack(a);
 		if (min_pos + 1 < (a->size) / 2)
 		{
-			//printf("TRUE\n");
 			while (a->tab[0] != min)
 				execute_command("ra", a, b);
 		}
 		else
 		{
-			//printf("FALSE\n");
 			while (a->tab[0] != min)
 				execute_command("rra", a, b);
 		}
 		execute_command("pb", a, b);
-		//show_stacks(a, b);
 	}
 	while (b->size > 0)
 		printf("%d ", execute_command("pa", a, b));
-	show_stacks(a, b);
-	printf("Stack sorted : %d\n", is_stack_sorted(a));
-	read(1, user_input, 3);
-	return (0);
 }
 
 int	get_max_stack(t_stack *A)
