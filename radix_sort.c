@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:40:04 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 17:47:49 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/12 20:13:17 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	radix_sort(t_stack *A, t_stack *B)
 
 static	replace_values_by_rank(t_stack *A)
 {
-	int	*new_tab[A->size];
+	int	new_tab[A->size];
 	int	i;
 
 	i = 0;
@@ -46,6 +46,11 @@ static	replace_values_by_rank(t_stack *A)
 		new_tab[i] = get_rank(A, i);
 		i++;
 	}
+    /* 
+    i = 0;
+    while (i < (A->size))
+        A->tab[i] = new_tab[i];
+     */
 }
 
 static int	get_rank(t_stack *A, int index)

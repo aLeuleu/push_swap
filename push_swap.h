@@ -6,13 +6,14 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 16:05:45 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/12 19:12:14 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "libft/libft.h"
 
 typedef struct s_stack
 {
