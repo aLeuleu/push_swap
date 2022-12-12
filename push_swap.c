@@ -6,7 +6,11 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/12/12 14:26:08 by alevra           ###   ########lyon.fr   */
+=======
+/*   Updated: 2022/12/12 16:53:22 by alevra           ###   ########lyon.fr   */
+>>>>>>> 650a283 (refactoring)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +43,17 @@ int	main(int argc, char const *argv[])
 	if (is_stack_sorted(a))
 		return (0);
 	i = 0;
-	if (a->size < 10)
+	if (a->size < 5)
 		short_sort(a,b);
 	else
 		radix_sort(a , b);
 	show_stacks(a, b);
 	printf("Stack sorted : %d\n", is_stack_sorted(a));
-	read(1, user_input, 3);
+	// read(1, user_input, 3);
 	return (0);
 }
 
+<<<<<<< HEAD
 
 int	get_max_stack(t_stack *A)
 {
@@ -124,6 +129,8 @@ int	get_min_pos_stack(t_stack *A)
 	return (pos);
 }
 
+=======
+>>>>>>> 650a283 (refactoring)
 int	is_stack_reverse_sorted(t_stack *A)
 {
 	size_t	i;
@@ -147,6 +154,8 @@ int	is_stack_sorted(t_stack *A)
 
 	i = 0;
 	is_sorted = 1;
+	if (A->size == 0)
+		return (1);
 	while (i + 1 < A->size - 1)
 	{
 		if (A->tab[i + 1] < A->tab[i])
@@ -155,3 +164,7 @@ int	is_stack_sorted(t_stack *A)
 	}
 	return (is_sorted);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 650a283 (refactoring)
