@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/14 17:30:19 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/14 19:27:44 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,43 +20,42 @@ int	main(int argc, char const *argv[])
 	t_stack	*a;
 	t_stack	*b;
 	int		i;
-	char	*user_input;
 	
-	a = malloc(sizeof(int *) + sizeof(size_t));
-	
-	b = malloc(sizeof(int *) + sizeof(size_t));
+	a = malloc(sizeof(t_stack));
+	b = malloc(sizeof(t_stack));
 	
 	b->size = 0;
 	a->size = 0;
-	if (argc > 1)
+	if (argc > 2)
 	{
-		a->size = (argc - 1);
-		a->tab = malloc(sizeof(int) * (a->size));
-		
-		b->tab = malloc(sizeof(int) * argc - 1);
+		a->tab = malloc(sizeof(int) * (argc - 1));
+		b->tab = malloc(sizeof(int) * (argc - 1));
 		while (argc > 1)
 		{
-			a->tab[(a->size - 1) - (argc - 2)] = atoi(argv[argc - 1]);
+			a->tab[argc - 2] = atoi(argv[argc - 1]);
+			a->size++;
 			argc--;
 		}
 	}
-	if (argc == 1)		//TODO refactor this shit
-	{
+	else if (argc == 2)		//TODO refactor this shit
+	{						//TODO mettre count words dans ma libft et malloc avec count-word
 		char** char_tab = (ft_split(argv[1], ' '));
 		int j = 0;
-		
+
+		a->tab = malloc(j);
+		b->tab = malloc(j);
 		while (char_tab[j] != 0)
-			j++;
-		a->size = j;
-		while(--j > 0)
 		{
-			a->tab[j] = ft_atoi(char_tab[a->size - j]);
-			free(char_tab[a->size - j]);
+			a->tab[j] = 4;
+			a->tab[j] = ft_atoi(char_tab[j]);
+			a->size++;
+			free(char_tab[j]);
+			j++;
 		}
+		a->size--;
 		free(char_tab);
 	}
 	//show_stacks(a , b);
-	user_input = malloc(sizeof(char) * 3); // jamais free ca ? mdr
 	if (is_stack_sorted(a))
 		return (0);
 	i = 0;
@@ -67,7 +66,6 @@ int	main(int argc, char const *argv[])
 		radix_sort(a , b);
 	//show_stacks(a, b);
 	//ft_printf("Stack sorted : %d\n", is_stack_sorted(a));
-	// read(1, user_input, 3);
 	return (0);
 }
 
