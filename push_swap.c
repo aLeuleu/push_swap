@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 18:43:39 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/13 19:34:30 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	main(int argc, char const *argv[])
 	t_stack	*b;
 	int		i;
 	char	*user_input;
-
-	i = 1;
+	
 	a = malloc(sizeof(int *) + sizeof(size_t));
 	a->tab = malloc(sizeof(int) * argc - 1);
 	b = malloc(sizeof(int *) + sizeof(size_t));
