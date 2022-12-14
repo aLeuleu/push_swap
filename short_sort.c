@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:45:33 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 15:56:00 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/14 15:24:40 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	short_sort(t_stack *a, t_stack *b)
 	int min_pos;
 	int	min;
 	
-	printf("short sort\n"); //debug
-	while (a->size != 0 || !is_stack_sorted(a))
+	while (a->size != 0)
 	{
 		min = get_min_stack(a);
 		min_pos = get_min_pos_stack(a);
@@ -38,5 +37,5 @@ void	short_sort(t_stack *a, t_stack *b)
 		execute_command("pb", a, b);
 	}
 	while (b->size > 0)
-		printf("%d ", execute_command("pa", a, b));
+		execute_command("pa", a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 13:39:35 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/14 14:11:50 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	execute_command(char *user_input, t_stack *A, t_stack *B)
 	
 	nb_command++;
 	i = 0;
-	printf(user_input);
-	printf("\n");
+	ft_printf(user_input);
+	ft_printf("\n");
 	if (user_input[0] == 'p')
 	{
 		if (user_input[1] == 'a' && B->size)

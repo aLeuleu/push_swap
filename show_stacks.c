@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:46:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 20:07:39 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/14 14:09:49 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	show_stacks(t_stack *A, t_stack *B)
 	top_row = A->size;
 	if (B->size > top_row)
 		top_row = B->size;
-	printf("\n");
+	ft_printf("\n");
 	while (top_row)
 	{
 		show_stack_row(A, top_row);
@@ -29,13 +29,13 @@ void	show_stacks(t_stack *A, t_stack *B)
 		printf("\n");
 		top_row--;
 	}
-	printf("\tA\tB\n");
+	ft_printf("\tA\tB\n");
 }
 
 static void	show_stack_row(t_stack *A, int row)
 {
 	if (A->size >= row)
-		ft_printf("\t%b", A->tab[A->size - row ]);
+		ft_printf("\t%d", A->tab[A->size - row ]);
 	else
 		ft_printf("\t.");
 }
