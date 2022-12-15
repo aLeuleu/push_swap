@@ -6,14 +6,14 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/14 19:27:44 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 04:09:38 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static int	get_rank(t_stack *A, int index);
-static		replace_values_by_rank(t_stack *A);
+static void	replace_values_by_rank(t_stack *A);
 
 int	main(int argc, char const *argv[])
 {
@@ -32,8 +32,9 @@ int	main(int argc, char const *argv[])
 		b->tab = malloc(sizeof(int) * (argc - 1));
 		while (argc > 1)
 		{
-			a->tab[argc - 2] = atoi(argv[argc - 1]);
+			a->tab[argc - 2] = ft_atoi(argv[argc - 1]);
 			a->size++;
+			a->tab[a->size] = 9999;
 			argc--;
 		}
 	}
@@ -42,17 +43,17 @@ int	main(int argc, char const *argv[])
 		char** char_tab = (ft_split(argv[1], ' '));
 		int j = 0;
 
-		a->tab = malloc(j);
-		b->tab = malloc(j);
+		a->tab = malloc(30000);
+		b->tab = malloc(30000);
 		while (char_tab[j] != 0)
 		{
 			a->tab[j] = 4;
 			a->tab[j] = ft_atoi(char_tab[j]);
 			a->size++;
+			a->tab[a->size] = 9999;
 			free(char_tab[j]);
 			j++;
 		}
-		a->size--;
 		free(char_tab);
 	}
 	//show_stacks(a , b);
@@ -69,7 +70,7 @@ int	main(int argc, char const *argv[])
 	return (0);
 }
 
-static	replace_values_by_rank(t_stack *A)
+static void	replace_values_by_rank(t_stack *A)
 {
 	int	new_tab[A->size];
 	int	i;
@@ -79,10 +80,10 @@ static	replace_values_by_rank(t_stack *A)
 		new_tab[i] = get_rank(A, i);
 		i++;
 	}
-    i = 0;
-    while (i < (A->size))
+	i = 0;
+	while (i < (A->size))
 	{
-        A->tab[i] = new_tab[i];
+		A->tab[i] = new_tab[i];
 		i++;
 	}
 }

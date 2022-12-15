@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:43:04 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 14:12:46 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 00:00:54 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ void	rotate(t_stack *A)
 	A->tab[last] = tmp;
 }
 
-void	rotate_reverse(t_stack *A)
+void	rotate_reverse(t_stack *a)
 {
 	int	last;
 	int	tmp;
 	int	i;
 
 	i = 0;
-	last = A->size - 1;
-	tmp = A->tab[last];
+	last = a->size;
+	tmp = a->tab[last - 1];
 	while (i < last)
 	{
-		A->tab[last - i] = A->tab[last - i - 1];
+		a->tab[last - i] = a->tab[last - i - 1];
 		i++;
 	}
-	A->tab[0] = tmp;
+	a->tab[0] = tmp;
 }

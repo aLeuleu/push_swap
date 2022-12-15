@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:45:33 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/14 18:22:21 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/14 22:48:25 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	short_sort(t_stack *a, t_stack *b)
 	while (a->size != 0)
 	{
 		min = get_min_stack(a);
-		min_pos = get_min_pos_stack(a);
-		if (a->tab[0] > a->tab[1])
-			execute_command("sa", a ,b);
 		min_pos = get_min_pos_stack(a);
 		if (min_pos + 1 < (a->size) / 2)
 		{
