@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2022/12/15 22:11:15 by alevra           ###   ########lyon.fr    #
+#    Updated: 2022/12/15 23:20:46 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC =	push_swap.c			\
 
 OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
-FSANITIZE = 0;
+FSANITIZE = -fsanitize=address
 
 all	: create_obj_folder $(NAME) end_message
 
@@ -37,15 +37,10 @@ $(NAME): libft/libft.a $(OBJ)
 	cc -Wall -Wextra -Werror $(OBJ) -L ./libft -lft -o $(NAME)
 
 obj/%.o : %.c $(HEADER)
-	
-	@if [ $(FSANITIZE) == 0 ]; then\
-		cc -c -Wall -Wextra -Werror $< -o $@ ;\
-	else\
-		cc -c -Wall -Wextra -Werror -fsanitize==address $< -o $@
-	fi
+		cc -c -Wall -Wextra -Werror $< -o $@
 
 create_obj_folder :
-	@mkdir -p obj
+	mkdir -p obj
 
 clean:
 	rm -f $(OBJ)
@@ -60,16 +55,11 @@ fclean: clean
 
 re: fclean all
 
-debug : libft/libft.a $(OBJ)
-	cc -Wall -Wextra -Werror $(OBJ) -L ./libft -lft -o $(NAME)_debug && ./$(NAME)_debug $(ARG) && echo "" && ./$(NAME)_debug $(ARG) | ./checker $(ARG) 
+debug : libft/libft.a
+	cc $(FSANITIZE) -Wall -Wextra -Werror $(SRC) -L ./libft -lft -o $(NAME)_debug  && ./$(NAME)_debug $(ARG) && echo "" && ./$(NAME)_debug $(ARG) | ./checker $(ARG) 
 
 run:
 	./$(NAME) $(ARG)
-	
-fsanitize:
-	export FSANITIZE=1
-	make all
-	make run
 
 end_message:
 	@echo "Done !"

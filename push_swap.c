@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 22:43:27 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 23:58:02 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,63 @@
 static int	get_rank(t_stack *A, int index);
 static void	replace_values_by_rank(t_stack *A);
 
+// static void	handle_multi_arg(t_stack *a, t_stac *b, char const *argv[argc])
+
+static void	init_stack(t_stack **a, t_stack **b)
+{
+	*a = malloc(sizeof(t_stack));
+	*b = malloc(sizeof(t_stack));
+	(*b)->size = 0;
+	(*a)->size = 0;
+}
+
+static int	malloc_stack_tab_and_set_size(t_stack *a, t_stack *b, int value)
+{
+	a->tab = malloc(sizeof(int) * value);
+	b->tab = malloc(sizeof(int) * value);
+	a->size = value - 1;
+	a->tab[a->size] = 9999;
+	return (1);
+}
+
+static void	handle_mono_arg(t_stack *a, t_stack *b, char **splits)
+{
+	int j = 0;
+
+		while (*splits)
+		{
+			a->size++;
+			splits++;			
+		}
+		splits -= a->size;
+		
+		a->tab = malloc(a->size + 1);
+		b->tab = malloc(a->size + 1);
+		a->tab[a->size] = 9999;
+		while (splits[j] != 0)
+		{
+			a->tab[j] = 4;
+			a->tab[j] = ft_atoi(splits[j]);
+			free(splits[j]);
+			j++;
+		}
+		free(splits);
+}
+
 int	main(int argc, char const *argv[])
 {
 	t_stack	*a;
 	t_stack	*b;
 	int		i;
 	
-	a = malloc(sizeof(t_stack));
-	b = malloc(sizeof(t_stack));
-	
-	b->size = 0;
-	a->size = 0;
-	if (argc > 2)
-	{
-		a->tab = malloc(sizeof(int) * (argc));
-		b->tab = malloc(sizeof(int) * (argc));
+	init_stack(&a, &b);
+	if (argc > 2 && malloc_stack_tab_and_set_size(a, b, argc)) // handle_multi_arg
 		while (argc > 1)
-		{
-			a->tab[argc - 2] = ft_atoi(argv[argc - 1]);
-			a->size++;
-			argc--;
-		}
-		a->tab[a->size] = 9999;
-	}
-	else if (argc == 2)		//TODO refactor this shit
-	{						//TODO mettre count words dans ma libft et malloc avec count-word
-		char** char_tab = (ft_split(argv[1], ' '));
-		int j = 0;
-
-		while (*char_tab)
-		{
-			a->size++;
-			char_tab++;			
-		}
-		char_tab -= a->size;
-		a->tab = malloc(a->size);
-		b->tab = malloc(a->size);
-		while (char_tab[j] != 0)
-		{
-			a->tab[j] = 4;
-			a->tab[j] = ft_atoi(char_tab[j]);
-			a->size++;
-			a->tab[a->size] = 9999;
-			free(char_tab[j]);
-			j++;
-		}
-		free(char_tab);
+			a->tab[(argc--) - 2] = ft_atoi(argv[argc - 1]); // if there are bug, write this on two lines
+	else if (argc == 2)	//handle_mono_arg
+	{						
+		char** splits = (ft_split(argv[1], ' '));
+		handle_mono_arg(a, b, splits);
 	}
 	//show_stacks(a , b);
 	if (is_stack_reverse_sorted(a))
