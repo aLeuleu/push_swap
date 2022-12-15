@@ -6,43 +6,43 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 15:45:48 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 21:34:51 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	execute_command(const char *user_input, t_stack *A, t_stack *B)
+int	execute_command(const char *command, t_stack *A, t_stack *B)
 {
 	int			i;
 	static int	nb_command;
 	
 	nb_command++;
 	i = 0;
-	ft_printf(user_input);
+	ft_printf(command);
 	ft_printf("\n");
-	if (ft_strncmp(user_input,"pa", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"pa", ft_strlen(command)))
 		push(B, A);
-	if (ft_strncmp(user_input,"pb", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"pb", ft_strlen(command)))
 		push(A, B);
-	if (ft_strncmp(user_input,"sa", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"sa", ft_strlen(command)))
 		swap(A);
-	if (ft_strncmp(user_input,"sb", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"sb", ft_strlen(command)))
 		swap(B);
-	if (ft_strncmp(user_input,"sb", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"sb", ft_strlen(command)))
 	{
 		swap(A);
 		swap(B);
 	}
-	if (ft_strncmp(user_input,"ra", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"ra", ft_strlen(command)))
 		rotate(A);
-	if (ft_strncmp(user_input,"rb", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"rb", ft_strlen(command)))
 		rotate(B);
-	if (ft_strncmp(user_input,"rra", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"rra", ft_strlen(command)))
 		rotate_reverse(A);
-	if (ft_strncmp(user_input,"rrb", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"rrb", ft_strlen(command)))
 		rotate_reverse(B);
-	if (ft_strncmp(user_input,"rrr", ft_strlen(user_input)))
+	if (!ft_strncmp(command,"rrr", ft_strlen(command)))
 	{
 		rotate_reverse(A);
 		rotate_reverse(B);

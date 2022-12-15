@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 16:56:24 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 22:43:27 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,29 @@ int	main(int argc, char const *argv[])
 	a->size = 0;
 	if (argc > 2)
 	{
-		a->tab = malloc(sizeof(int) * (argc) *10);
-		b->tab = malloc(sizeof(int) * (argc) *10);
+		a->tab = malloc(sizeof(int) * (argc));
+		b->tab = malloc(sizeof(int) * (argc));
 		while (argc > 1)
 		{
 			a->tab[argc - 2] = ft_atoi(argv[argc - 1]);
 			a->size++;
-			a->tab[a->size] = 9999;
 			argc--;
 		}
+		a->tab[a->size] = 9999;
 	}
 	else if (argc == 2)		//TODO refactor this shit
 	{						//TODO mettre count words dans ma libft et malloc avec count-word
 		char** char_tab = (ft_split(argv[1], ' '));
 		int j = 0;
 
-		a->tab = malloc(30000);
-		b->tab = malloc(30000);
+		while (*char_tab)
+		{
+			a->size++;
+			char_tab++;			
+		}
+		char_tab -= a->size;
+		a->tab = malloc(a->size);
+		b->tab = malloc(a->size);
 		while (char_tab[j] != 0)
 		{
 			a->tab[j] = 4;
@@ -57,7 +63,7 @@ int	main(int argc, char const *argv[])
 		free(char_tab);
 	}
 	//show_stacks(a , b);
-	if (is_stack_sorted(a))
+	if (is_stack_reverse_sorted(a))
 		return (0);
 	i = 0;
 	replace_values_by_rank(a);
@@ -66,7 +72,7 @@ int	main(int argc, char const *argv[])
 	else
 		radix_sort(a , b);
 	//show_stacks(a, b);
-	//ft_printf("Stack sorted : %d\n", is_stack_sorted(a));
+	// ft_printf("Stack sorted : %d\n", is_stack_sorted(a));
 	return (0);
 }
 
