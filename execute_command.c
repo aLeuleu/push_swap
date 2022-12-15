@@ -6,13 +6,13 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 04:03:26 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 15:45:48 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	execute_command(char *user_input, t_stack *A, t_stack *B)
+int	execute_command(const char *user_input, t_stack *A, t_stack *B)
 {
 	int			i;
 	static int	nb_command;
@@ -21,28 +21,28 @@ int	execute_command(char *user_input, t_stack *A, t_stack *B)
 	i = 0;
 	ft_printf(user_input);
 	ft_printf("\n");
-	if (user_input == "pa")
+	if (ft_strncmp(user_input,"pa", ft_strlen(user_input)))
 		push(B, A);
-	if (user_input == "pb")
+	if (ft_strncmp(user_input,"pb", ft_strlen(user_input)))
 		push(A, B);
-	if (user_input == "sa")
+	if (ft_strncmp(user_input,"sa", ft_strlen(user_input)))
 		swap(A);
-	if (user_input == "sb")
+	if (ft_strncmp(user_input,"sb", ft_strlen(user_input)))
 		swap(B);
-	if (user_input == "ss")
+	if (ft_strncmp(user_input,"sb", ft_strlen(user_input)))
 	{
 		swap(A);
 		swap(B);
 	}
-	if (user_input == "ra")
+	if (ft_strncmp(user_input,"ra", ft_strlen(user_input)))
 		rotate(A);
-	if (user_input == "rb")
+	if (ft_strncmp(user_input,"rb", ft_strlen(user_input)))
 		rotate(B);
-	if (user_input == "rra")
+	if (ft_strncmp(user_input,"rra", ft_strlen(user_input)))
 		rotate_reverse(A);
-	if (user_input == "rrb")
+	if (ft_strncmp(user_input,"rrb", ft_strlen(user_input)))
 		rotate_reverse(B);
-	if (user_input == "rrr")
+	if (ft_strncmp(user_input,"rrr", ft_strlen(user_input)))
 	{
 		rotate_reverse(A);
 		rotate_reverse(B);

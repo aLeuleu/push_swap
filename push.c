@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:41:37 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 00:47:55 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 15:41:27 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push(t_stack *a, t_stack *b)
 {
-	int	i;
+	size_t	i;
 
 	i = 1;
 	b->size++;

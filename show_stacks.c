@@ -6,17 +6,17 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:46:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 02:35:37 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 15:48:49 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	show_stack_row(t_stack *A, int row);
+static void	show_stack_row(t_stack *A, size_t row);
 
 void	show_stacks(t_stack *A, t_stack *B)
 {
-	int	top_row;
+	size_t	top_row;
 
 	top_row = A->size;
 	if (B->size > top_row)
@@ -32,7 +32,7 @@ void	show_stacks(t_stack *A, t_stack *B)
 	ft_printf("\tA\tB\n");
 }
 
-static void	show_stack_row(t_stack *A, int row)
+static void	show_stack_row(t_stack *A, size_t row)
 {
 	if (A->size >= row)
 	{

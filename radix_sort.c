@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:40:04 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 04:03:42 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 15:47:54 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	radix_sort(t_stack *A, t_stack *B)
 static void	radix_sort_by_index(int index, t_stack *A, t_stack *B)
 {
 	int	i;
-	int target;
 	int	size;
 
 	//ft_printf("\n\tindex : %d\n\n", index);
@@ -60,7 +59,7 @@ static void	radix_sort_by_index(int index, t_stack *A, t_stack *B)
 
 static int	get_radix_max_index(t_stack *A)
 {
-	int	i;
+	size_t	i;
 	int	max;
 
 	max = 0;

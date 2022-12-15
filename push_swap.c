@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 04:09:38 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 16:56:24 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(int argc, char const *argv[])
 	a->size = 0;
 	if (argc > 2)
 	{
-		a->tab = malloc(sizeof(int) * (argc - 1));
-		b->tab = malloc(sizeof(int) * (argc - 1));
+		a->tab = malloc(sizeof(int) * (argc) *10);
+		b->tab = malloc(sizeof(int) * (argc) *10);
 		while (argc > 1)
 		{
 			a->tab[argc - 2] = ft_atoi(argv[argc - 1]);
@@ -72,8 +72,8 @@ int	main(int argc, char const *argv[])
 
 static void	replace_values_by_rank(t_stack *A)
 {
-	int	new_tab[A->size];
-	int	i;
+	int		new_tab[A->size];
+	size_t	i;
 	i = 0;
 	while (i < (A->size))
 	{
@@ -92,7 +92,7 @@ static int	get_rank(t_stack *A, int index)
 {
 	int	nb;
 	int	res;
-	int	i;
+	size_t	i;
 
 	nb = A->tab[index];
 	i = 0;

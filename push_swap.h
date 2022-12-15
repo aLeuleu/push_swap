@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 19:12:14 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 15:45:21 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_stack
 
 void		push(t_stack *A, t_stack *B);
 void		show_stacks(t_stack *A, t_stack *B);
-int			execute_command(char *user_input, t_stack *A, t_stack *B);
+int			execute_command(const char *user_input, t_stack *A, t_stack *B);
 void		swap(t_stack *A);
 void		rotate(t_stack *A);
 void		rotate_reverse(t_stack *A);

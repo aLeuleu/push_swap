@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:06:49 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 16:07:29 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 15:47:30 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	get_max_stack(t_stack *A)
 {
-	int	i;
-	int	max;
+	size_t	i;
+	int		max;
 
 	max = A->tab[0];
 	i = 1;
@@ -30,7 +30,7 @@ int	get_max_stack(t_stack *A)
 
 int	get_max_pos_stack(t_stack *A)
 {
-	int	i;
+	size_t	i;
 	int	max;
 	int	pos;
 
@@ -51,7 +51,7 @@ int	get_max_pos_stack(t_stack *A)
 
 int	get_min_stack(t_stack *A)
 {
-	int	i;
+	size_t	i;
 	int	min;
 
 	min = A->tab[0];
@@ -67,7 +67,7 @@ int	get_min_stack(t_stack *A)
 
 int	get_min_pos_stack(t_stack *A)
 {
-	int	i;
+	size_t	i;
 	int	min;
 	int	pos;
 

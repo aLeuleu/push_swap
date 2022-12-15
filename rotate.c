@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:43:04 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/15 00:00:54 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/15 16:57:56 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	rotate(t_stack *A)
 	tmp = A->tab[0];
 	while (i < last)
 	{
+		ft_printf("i : %d\n")
 		A->tab[i] = A->tab[i + 1];
 		i++;
 	}
