@@ -6,34 +6,37 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 18:30:57 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 20:16:53 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	command_push(const char *command, t_stack *a, t_stack *b);
-static void	command_swap(const char *command, t_stack *a, t_stack *b);
-static void	command_rotate(const char *command, t_stack *a, t_stack *b);
+static void		command_push(const char *command, t_stack *a, t_stack *b);
+static void		command_swap(const char *command, t_stack *a, t_stack *b);
+static void		command_rotate(const char *command, t_stack *a, t_stack *b);
 
-int	execute_command(const char *command, t_stacks_pair *stacks)
+t_stacks_pair	*execute_command(const char *command, t_stacks_pair *stacks)
 {
-	static int	nb_command;
-	t_stack		*a;
-	t_stack		*b;
+	t_stack			*a;
+	t_stack			*b;
+	t_stacks_pair	*res;
 
 	a = stacks->a;
 	b = stacks->b;
-	nb_command++;
-	ft_printf(command);
+/* 	ft_printf(command);
 	ft_printf("\n");
-	if (command[0] == 'p')
+ */	if (command[0] == 'p')
 		command_push(command, a, b);
 	if (command[0] == 's')
 		command_swap(command, a, b);
 	if (command[0] == 'r')
 		command_rotate(command, a, b);
-	return (nb_command);
+	res = malloc(sizeof(t_stacks_pair));
+	if (!res)
+		return (NULL);
+	cpy_stacks(stacks, res);
+	//make sure cpy went OK
 }
 
 static void	command_push(const char *command, t_stack *a, t_stack *b)

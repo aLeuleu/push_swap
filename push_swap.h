@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 18:59:25 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 20:09:36 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,16 @@ typedef struct s_node
 	struct s_node	*parent;
 	char			**commands;
 	t_stacks_pair	stacks;
+	int				depth;
 }					t_node;
+
+# ifndef NB_COMMANDS
+#  define NB_COMMANDS = 11
+# endif
+
+# ifndef COMMANDS
+#  define COMMANDS = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"}
+# endif
 
 void				push(t_stack *a, t_stack *b);
 void				show_stacks(t_stacks_pair *stacks);
