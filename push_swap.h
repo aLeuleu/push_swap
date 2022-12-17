@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 11:37:22 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 14:58:52 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,6 @@ int			get_min_stack(t_stack *A);
 int			get_min_pos_stack(t_stack *A);
 int			is_stack_reverse_sorted(t_stack *A);
 int			is_stack_sorted(t_stack *A);
+void        ft_freestacks(t_stack *a, t_stack *b);
+void        ft_freestack(t_stack *a);
+void	replace_values_by_rank(t_stack *A);

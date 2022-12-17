@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2022/12/15 23:20:46 by alevra           ###   ########lyon.fr    #
+#    Updated: 2022/12/17 15:01:16 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,18 @@ NAME = push_swap
 
 HEADER = $(NAME).h
 
-SRC =	push_swap.c			\
-		push.c				\
-		execute_command.c	\
-		get_min_max_stack.c	\
-		radix_sort.c		\
-		rotate.c			\
-		short_sort.c		\
-		show_stacks.c		\
-		swap.c				\
+SRC =	execute_command.c			\
+		ft_freestacks.c				\
+		get_min_max_stack.c			\
+		is_stack_sorted.c			\
+		push_swap.c					\
+		push.c						\
+		radix_sort.c				\
+		replace_values_by_rank.c	\
+		rotate.c					\
+		short_sort.c				\
+		show_stacks.c				\
+		swap.c						\
 
 OBJ = $(addprefix obj/,$(SRC:.c=.o))
 

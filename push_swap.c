@@ -6,16 +6,12 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 14:52:24 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 14:59:19 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_rank(t_stack *A, int index);
-static void	replace_values_by_rank(t_stack *A);
-static void ft_freestacks(t_stack *a, t_stack *b);
-static void	ft_freestack(t_stack *a);
 static void	handle_mono_arg(t_stack *a, t_stack *b, const char *argv1);
 static void	init_stack(t_stack **a, t_stack **b);
 static int	malloc_stack_tab_and_set_size(t_stack *a, t_stack *b, int value);
@@ -85,84 +81,3 @@ static void	handle_mono_arg(t_stack *a, t_stack *b, const char *argv1)
 	free(splits);
 }
 
-static void ft_freestacks(t_stack *a, t_stack *b)
-{
-	ft_freestack(a);
-	ft_freestack(b);
-}
-
-static void	ft_freestack(t_stack *a)
-{
-	free (a->tab);
-	free(a);
-}
-
-static void	replace_values_by_rank(t_stack *A)
-{
-	int		new_tab[A->size];
-	size_t	i;
-	i = 0;
-	while (i < (A->size))
-	{
-		new_tab[i] = get_rank(A, i);
-		i++;
-	}
-	i = 0;
-	while (i < (A->size))
-	{
-		A->tab[i] = new_tab[i];
-		i++;
-	}
-}
-
-static int	get_rank(t_stack *A, int index)
-{
-	int	nb;
-	int	res;
-	size_t	i;
-
-	nb = A->tab[index];
-	i = 0;
-	res = 0;
-	while (i < (A->size))
-	{
-		if (A->tab[i] < nb)
-			res++;
-		i++;
-	}
-	return (res);
-}
-
-int	is_stack_reverse_sorted(t_stack *A)
-{
-	size_t	i;
-	int		is_rsorted;
-
-	i = 0;
-	is_rsorted = 1;
-	while (i + 1 < A->size - 1)
-	{
-		if (A->tab[i + 1] > A->tab[i])
-			is_rsorted = 0;
-		i++;
-	}
-	return (is_rsorted);
-}
-
-int	is_stack_sorted(t_stack *A)
-{
-	size_t	i;
-	int		is_sorted;
-
-	i = 0;
-	is_sorted = 1;
-	if (A->size == 0)
-		return (1);
-	while (i + 1 < A->size - 1)
-	{
-		if (A->tab[i + 1] < A->tab[i])
-			is_sorted = 0;
-		i++;
-	}
-	return (is_sorted);
-}
