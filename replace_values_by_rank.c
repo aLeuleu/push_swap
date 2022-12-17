@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:58:26 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 14:59:29 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 15:18:17 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	replace_values_by_rank(t_stack *A)
 {
 	int		new_tab[A->size];
 	size_t	i;
+
 	i = 0;
 	while (i < (A->size))
 	{
@@ -34,8 +35,8 @@ void	replace_values_by_rank(t_stack *A)
 
 static int	get_rank(t_stack *A, int index)
 {
-	int	nb;
-	int	res;
+	int		nb;
+	int		res;
 	size_t	i;
 
 	nb = A->tab[index];
