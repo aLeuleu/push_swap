@@ -6,36 +6,40 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:46:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 15:27:27 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 18:27:37 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	show_stack_row(t_stack *A, size_t row);
+static void	show_stack_row(t_stack *a, size_t row);
 
-void	show_stacks(t_stack *A, t_stack *B)
+void	show_stacks(t_stacks_pair *stacks)
 {
 	size_t	top_row;
+	t_stack	*a;
+	t_stack	*b;
 
-	top_row = A->size;
-	if (B->size > top_row)
-		top_row = B->size;
+	a = stacks->a;
+	b = stacks->b;
+	top_row = a->size;
+	if (b->size > top_row)
+		top_row = b->size;
 	ft_printf("\n");
 	while (top_row)
 	{
-		show_stack_row(A, top_row);
-		show_stack_row(B, top_row);
+		show_stack_row(a, top_row);
+		show_stack_row(b, top_row);
 		printf("\n");
 		top_row--;
 	}
 	ft_printf("\tA\tB\n");
 }
 
-static void	show_stack_row(t_stack *A, size_t row)
+static void	show_stack_row(t_stack *a, size_t row)
 {
-	if (A->size >= row)
-		ft_printf("\t%d", A->tab[A->size - row]);
+	if (a->size >= row)
+		ft_printf("\t%d", a->tab[a->size - row]);
 	else
 		ft_printf("\t.");
 }

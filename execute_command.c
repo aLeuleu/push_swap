@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 15:15:10 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 18:30:57 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ static void	command_push(const char *command, t_stack *a, t_stack *b);
 static void	command_swap(const char *command, t_stack *a, t_stack *b);
 static void	command_rotate(const char *command, t_stack *a, t_stack *b);
 
-int	execute_command(const char *command, t_stack *a, t_stack *b)
+int	execute_command(const char *command, t_stacks_pair *stacks)
 {
 	static int	nb_command;
+	t_stack		*a;
+	t_stack		*b;
 
+	a = stacks->a;
+	b = stacks->b;
 	nb_command++;
 	ft_printf(command);
 	ft_printf("\n");

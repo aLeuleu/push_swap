@@ -6,17 +6,17 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:48:19 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/12 13:48:22 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 18:27:54 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack *A)
+void	swap(t_stack *a)
 {
 	int	tmp;
 
-	tmp = A->tab[0];
-	A->tab[0] = A->tab[1];
-	A->tab[1] = tmp;
+	tmp = a->tab[0];
+	a->tab[0] = a->tab[1];
+	a->tab[1] = tmp;
 }

@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 15:06:41 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 18:59:25 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,39 @@
 
 typedef struct s_stack
 {
-	int		*tab;
-	size_t	size;
-}			t_stack;
+	int				*tab;
+	size_t			size;
+}					t_stack;
 
-void		push(t_stack *A, t_stack *B);
-void		show_stacks(t_stack *A, t_stack *B);
-int			execute_command(const char *user_input, t_stack *A, t_stack *B);
-void		swap(t_stack *A);
-void		rotate(t_stack *A);
-void		rotate_reverse(t_stack *A);
-void		short_sort(t_stack *a, t_stack *b);
-int			radix_sort(t_stack *A, t_stack *B);
-int			get_max_stack(t_stack *A);
-int			get_max_pos_stack(t_stack *A);
-int			get_min_stack(t_stack *A);
-int			get_min_pos_stack(t_stack *A);
-int			is_stack_reverse_sorted(t_stack *A);
-int			is_stack_sorted(t_stack *A);
-void		ft_freestacks(t_stack *a, t_stack *b);
-void		ft_freestack(t_stack *a);
-void		replace_values_by_rank(t_stack *A);
+typedef struct s_stacks_pair
+{
+	t_stack			*a;
+	t_stack			*b;
+}					t_stacks_pair;
+
+typedef struct s_node
+{
+	struct s_node	*parent;
+	char			**commands;
+	t_stacks_pair	stacks;
+}					t_node;
+
+void				push(t_stack *a, t_stack *b);
+void				show_stacks(t_stacks_pair *stacks);
+int					execute_command(const char *user_input,
+						t_stacks_pair *stacks);
+void				swap(t_stack *A);
+void				rotate(t_stack *A);
+void				rotate_reverse(t_stack *A);
+void				short_sort(t_stacks_pair *stacks);
+int					radix_sort(t_stacks_pair *stacks);
+int					get_max_stack(t_stack *A);
+int					get_max_pos_stack(t_stack *A);
+int					get_min_stack(t_stack *A);
+int					get_min_pos_stack(t_stack *A);
+int					is_stack_reverse_sorted(t_stack *A);
+int					is_stack_sorted(t_stack *A);
+void				ft_freestacks(t_stacks_pair *stacks);
+void				ft_freestack(t_stack *a);
+void				replace_values_by_rank(t_stack *A);
 #endif
