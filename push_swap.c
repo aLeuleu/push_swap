@@ -6,16 +6,11 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/12/16 13:52:42 by alevra           ###   ########lyon.fr   */
-=======
-/*   Updated: 2022/12/12 21:10:46 by alevra           ###   ########lyon.fr   */
->>>>>>> e04df7b (refactoring)
+/*   Updated: 2022/12/17 11:37:19 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-<<<<<<< HEAD
 
 static int	get_rank(t_stack *A, int index);
 static void	replace_values_by_rank(t_stack *A);
@@ -65,28 +60,15 @@ static void	handle_mono_arg(t_stack *a, t_stack *b, char *argv1)
 	}
 	free(splits);
 }
-=======
->>>>>>> e04df7b (refactoring)
 
 int	main(int argc, char const *argv[])
 {
 	t_stack	*a;
 	t_stack	*b;
-<<<<<<< HEAD
-=======
-	int		i;
-	char	*user_input;
-
-    //debug
-    ft_printf("%b\n", 1); // pad de padding ?
-    return 0;
-    //debug
->>>>>>> e04df7b (refactoring)
 
 	init_stack(&a, &b);
 	if (argc > 2 && malloc_stack_tab_and_set_size(a, b, argc))
 		while (argc > 1)
-<<<<<<< HEAD
 			a->tab[(argc--) - 2] = ft_atoi(argv[argc - 1]);
 	else if (argc == 2)
 		handle_mono_arg(a, b, argv[1]);
@@ -136,28 +118,6 @@ static int	get_rank(t_stack *A, int index)
 	return (res);
 }
 
-=======
-		{
-			a->tab[argc - 2] = atoi(argv[argc - 1]);
-			argc--;
-		}
-	}
-	user_input = malloc(sizeof(char) * 3);
-	show_stacks(a, b);
-	if (is_stack_sorted(a))
-		return (0);
-	i = 0;
-	if (a->size < 5)
-		short_sort(a,b);
-	else
-		radix_sort(a , b);
-	show_stacks(a, b);
-	printf("Stack sorted : %d\n", is_stack_sorted(a));
-	// read(1, user_input, 3);
-	return (0);
-}
-
->>>>>>> e04df7b (refactoring)
 int	is_stack_reverse_sorted(t_stack *A)
 {
 	size_t	i;
