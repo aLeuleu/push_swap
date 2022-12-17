@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 13:12:07 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 13:27:07 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	main(int argc, char const *argv[])
 	t_stack	*a;
 	t_stack	*b;
 
+	if (argc == 1)
+		return(0);
 	init_stack(&a, &b);
 	if (argc > 2 && malloc_stack_tab_and_set_size(a, b, argc))
 		while (argc > 1)
