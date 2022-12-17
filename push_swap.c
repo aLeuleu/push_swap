@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 15:04:35 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 16:10:19 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,14 @@ int	main(int argc, char const *argv[])
 	}
 	else if (argc == 2)
 		handle_mono_arg(a, b, argv[1]);
-	if (is_stack_reverse_sorted(a))
-		return (0);
+	if (is_stack_sorted(a))
+		return (ft_freestacks(a, b), 0);
 	replace_values_by_rank(a);
 	if (a->size < 10)
 		short_sort(a, b);
 	else
 		radix_sort(a, b);
-	ft_freestacks(a, b);
-	return (0);
+	return (ft_freestacks(a, b), 0);
 }
 
 static void	init_stack(t_stack **a, t_stack **b)
