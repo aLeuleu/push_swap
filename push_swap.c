@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 11:37:19 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 11:41:15 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	get_rank(t_stack *A, int index);
 static void	replace_values_by_rank(t_stack *A);
-
-// static void	handle_multi_arg(t_stack *a, t_stac *b, char const *argv[argc])
 
 static void	init_stack(t_stack **a, t_stack **b)
 {
