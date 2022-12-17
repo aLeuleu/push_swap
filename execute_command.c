@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 11:45:23 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 13:14:09 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	execute_command(const char *command, t_stack *A, t_stack *B)
 {
-	int			i;
 	static int	nb_command;
 	
 	nb_command++;
-	i = 0;
 	ft_printf(command);
 	ft_printf("\n");
 	if (!ft_strncmp(command,"pa", ft_strlen(command)))

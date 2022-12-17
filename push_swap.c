@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 11:41:15 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 13:12:07 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	malloc_stack_tab_and_set_size(t_stack *a, t_stack *b, int value)
 	return (1);
 }
 
-static void	handle_mono_arg(t_stack *a, t_stack *b, char *argv1)
+static void	handle_mono_arg(t_stack *a, t_stack *b, const char *argv1)
 {
 	int		j;
 	char	**splits;
@@ -67,7 +67,10 @@ int	main(int argc, char const *argv[])
 	init_stack(&a, &b);
 	if (argc > 2 && malloc_stack_tab_and_set_size(a, b, argc))
 		while (argc > 1)
-			a->tab[(argc--) - 2] = ft_atoi(argv[argc - 1]);
+		{
+			a->tab[argc - 2] = ft_atoi(argv[argc - 1]);
+			argc--;
+		}
 	else if (argc == 2)
 		handle_mono_arg(a, b, argv[1]);
 	if (is_stack_reverse_sorted(a))
