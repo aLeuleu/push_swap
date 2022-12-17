@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:54:13 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 14:54:17 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 16:10:47 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,15 @@
 int	is_stack_reverse_sorted(t_stack *A)
 {
 	size_t	i;
-	int		is_rsorted;
 
 	i = 0;
-	is_rsorted = 1;
-	while (i + 1 < A->size - 1)
+	while (i + 1 < A->size)
 	{
 		if (A->tab[i + 1] > A->tab[i])
-			is_rsorted = 0;
+			return (0);
 		i++;
 	}
-	return (is_rsorted);
+	return (1);
 }
 
 int	is_stack_sorted(t_stack *A)
