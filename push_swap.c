@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 14:18:48 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 14:34:57 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,8 @@ static void	handle_mono_arg(t_stack *a, t_stack *b, const char *argv1)
 
 	j = 0;
 	splits = (ft_split(argv1, ' '));
-	while (*splits) // a ameliorer comme ci dessous
-	{
-		a->size++;
-		splits++;
-	}
-	/* 
 	while (*(splits++))
 		a->size++;
-	 */
 	splits -= a->size;
 	malloc_stack_tab_and_set_size(a, b, a->size + 1);
 	while (splits[j] != 0)
