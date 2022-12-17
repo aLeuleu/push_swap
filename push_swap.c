@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 13:27:07 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 14:18:48 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	get_rank(t_stack *A, int index);
 static void	replace_values_by_rank(t_stack *A);
+static void ft_freestacks(t_stack *a, t_stack *b);
+static void	ft_freestack(t_stack *a);
 
 static void	init_stack(t_stack **a, t_stack **b)
 {
@@ -82,7 +84,20 @@ int	main(int argc, char const *argv[])
 		short_sort(a, b);
 	else
 		radix_sort(a, b);
+	ft_freestacks(a, b);
 	return (0);
+}
+
+static void ft_freestacks(t_stack *a, t_stack *b)
+{
+	ft_freestack(a);
+	ft_freestack(b);
+}
+
+static void	ft_freestack(t_stack *a)
+{
+	free (a->tab);
+	free(a);
 }
 
 static void	replace_values_by_rank(t_stack *A)
