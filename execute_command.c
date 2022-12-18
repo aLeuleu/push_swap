@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 20:16:53 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/18 02:56:36 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ t_stacks_pair	*execute_command(const char *command, t_stacks_pair *stacks)
 	t_stack			*b;
 	t_stacks_pair	*res;
 
-	a = stacks->a;
-	b = stacks->b;
+	res = stacks_dup(stacks);
+	if (!res)
+		return(NULL);
+	a = res->a;
+	b = res->b;
 /* 	ft_printf(command);
 	ft_printf("\n");
  */	if (command[0] == 'p')
@@ -32,11 +35,7 @@ t_stacks_pair	*execute_command(const char *command, t_stacks_pair *stacks)
 		command_swap(command, a, b);
 	if (command[0] == 'r')
 		command_rotate(command, a, b);
-	res = malloc(sizeof(t_stacks_pair));
-	if (!res)
-		return (NULL);
-	cpy_stacks(stacks, res);
-	//make sure cpy went OK
+	return(res);
 }
 
 static void	command_push(const char *command, t_stack *a, t_stack *b)

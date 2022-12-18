@@ -6,50 +6,11 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 19:34:43 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/17 21:49:24 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static t_stacks_pair	*init_stack(t_stack **a, t_stack **b)
-{
-	t_stacks_pair	*res;
-
-	res = malloc(sizeof(t_stacks_pair));
-	*a = malloc(sizeof(t_stack));
-	*b = malloc(sizeof(t_stack));
-	(*b)->size = 0;
-	(*a)->size = 0;
-	res->a = *a;
-	res->b = *b;
-	if (!res || !res->a || !res->b)
-	{
-		if (res)
-		{
-			if (res->a)
-				free(res->a);
-			if (res->b)
-				free(res->b);
-			free(res);
-		}
-		return (NULL);
-	}
-	return (res);
-}
-
-static int	malloc_stacks_tab_and_set_size(t_stacks_pair *stacks, int value)
-{
-	stacks->a->tab = malloc(sizeof(int) * value);
-	if (!stacks->a->tab)
-		return (0);
-	stacks->b->tab = malloc(sizeof(int) * value);
-	if (!stacks->b->tab)
-		return (free(stacks->a->tab), 0);
-	stacks->a->size = value - 1;
-	stacks->a->tab[stacks->a->size] = 9999;
-	return (1);
-}
 
 static void	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
 {
@@ -88,7 +49,7 @@ int	main(int argc, char const *argv[])
 	t_stack			*a;
 	t_stack			*b;
 
-	stacks = init_stack(&a, &b);
+	stacks = init_stacks_pair(&a, &b);
 	if (argc == 1 || !stacks)
 		return (0);
 	if (argc > 2 && malloc_stacks_tab_and_set_size(stacks, argc))
@@ -97,7 +58,9 @@ int	main(int argc, char const *argv[])
 		{
 			a->tab[argc - 2] = ft_atoi(argv[argc - 1]);
 			argc--;
+			a->size++;
 		}
+		a->tab[stacks->a->size] = 9999;
 	}
 	else if (argc == 2)
 		handle_mono_arg(stacks, argv[1]);

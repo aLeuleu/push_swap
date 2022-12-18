@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2022/12/17 15:01:16 by alevra           ###   ########lyon.fr    #
+#    Updated: 2022/12/18 03:35:32 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,13 @@ NAME = push_swap
 
 HEADER = $(NAME).h
 
-SRC =	execute_command.c			\
+SRC =	create_new_gen.c			\
+		execute_command.c			\
 		ft_freestacks.c				\
 		get_min_max_stack.c			\
+		init_stacks_pair.c			\
 		is_stack_sorted.c			\
+		malloc_stacks_tab_and_set_size.c\
 		push_swap.c					\
 		push.c						\
 		radix_sort.c				\
@@ -25,6 +28,7 @@ SRC =	execute_command.c			\
 		rotate.c					\
 		short_sort.c				\
 		show_stacks.c				\
+		stacks_dup.c				\
 		swap.c						\
 
 OBJ = $(addprefix obj/,$(SRC:.c=.o))

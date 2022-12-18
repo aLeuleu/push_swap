@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:41:42 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 20:10:03 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/18 03:35:03 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	free_node(t_node *node)
 {
 	if (node->commands)
-		ft_freetab(node->commands, node->depth);
+		ft_freetab((void **)node->commands, node->depth);
 	free(node);
 }
 
@@ -27,19 +27,25 @@ static void	free_all_nodes(t_node *nodes, int pos)
 	free(nodes);
 }
 
-int	create_new_gen(t_node *parent, int nb_commands)
+int	create_new_gen(t_node *parent)
 {
-	t_node	*nodes[NB_COMMANDS];
-	int		i;
+	t_node *nodes[NB_COMMANDS];
+	int i;
+	static char *commands[] = {"sa", "sb", "ss"};
 
 	i = 0;
 	while (i < NB_COMMANDS)
 	{
 		nodes[i] = malloc(sizeof(t_node));
 		if (!nodes[i])
-			return(free_all_nodes(*nodes, i), 0);
+			return (free_all_nodes(*nodes, i), 0);
+		nodes[i]->stacks = execute_command(commands[i], parent->stacks);
+		if (!nodes[i]->stacks)
+			return (free_all_nodes(*nodes, i), 0);
+		nodes[i]->depth = parent->depth + 1;
+		nodes[i]->parent = parent;
+		nodes[i]->commands[parent->depth] = commands[i];
 		i++;
-		nodes[i]->stacks = execute_command(COMMANDS[i], parent->stacks);
 	}
 	return (1);
 }
