@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/18 03:33:41 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 14:55:44 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ typedef struct s_stacks_pair
 {
 	t_stack			*a;
 	t_stack			*b;
+	char			**commands; //coherent whith execute_command
+	size_t			commands_tab_size;
 }					t_stacks_pair;
 
 typedef struct s_node
 {
-	char			**commands;
 	struct s_node	*parent;
 	t_stacks_pair	*stacks;
-	int				depth;
+	size_t			depth;
 }					t_node;
 
 # ifndef NB_COMMANDS
@@ -45,8 +46,8 @@ typedef struct s_node
 
 void			push(t_stack *a, t_stack *b);
 void			show_stacks(t_stacks_pair *stacks);
-t_stacks_pair	*execute_command(const char *user_input,
-					t_stacks_pair *stacks);
+int				execute_command(const char *command, t_stacks_pair *old_stacks,
+		t_stacks_pair **new_stacks, size_t depth);
 void			swap(t_stack *A);
 void			rotate(t_stack *A);
 void			rotate_reverse(t_stack *A);

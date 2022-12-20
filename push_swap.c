@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 21:49:24 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 14:57:37 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,27 @@ static void	sort_stacks(t_stacks_pair *stacks)
 		radix_sort(stacks);
 }
 
+static void	opti_and_print_commands(t_stacks_pair *stacks)
+{
+	int	i;
+
+	//opti command (not implemented yet)
+	i = 0;
+	if (stacks)
+		while (stacks->commands[i])
+			ft_printf(stacks->commands[i++]);
+}
+
 int	main(int argc, char const *argv[])
 {
 	t_stacks_pair	*stacks;
 	t_stack			*a;
 	t_stack			*b;
 
+	if (argc == 1)
+		return (0);
 	stacks = init_stacks_pair(&a, &b);
-	if (argc == 1 || !stacks)
+	if (!stacks)
 		return (0);
 	if (argc > 2 && malloc_stacks_tab_and_set_size(stacks, argc))
 	{
@@ -65,5 +78,6 @@ int	main(int argc, char const *argv[])
 	else if (argc == 2)
 		handle_mono_arg(stacks, argv[1]);
 	sort_stacks(stacks);
+	opti_and_print_commands(stacks);
 	return (ft_freestacks(stacks), 0);
 }
