@@ -5,3 +5,5 @@ push_swap
 push_swap_debug
 libft/libft.a
 tester/
+complexity/*
+complexity
