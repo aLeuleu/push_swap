@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 16:20:18 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 22:28:23 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ int	execute_command(const char *command, t_stacks_pair *old_stacks,
 	if (!append_command(command, res, depth))
 		return (0);
 	*new_stacks = res;
+	
+/* 	ft_printf("\n\n%s : \n", command);
+	show_stacks(res);
+	for(size_t t = 0; t < depth; t++)
+		ft_printf("{%d}->{%s}\n",t, res->commands[t]);
+	 */
 	return (1);
 }
 

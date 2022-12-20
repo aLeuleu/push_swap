@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 18:16:57 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 22:39:04 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ static void	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
 static int	sort_stacks(t_stacks_pair *stacks)
 {
 	if (is_stack_sorted(stacks->a))
-		return ;
+		return (1);
 	replace_values_by_rank(stacks->a);
 	if (stacks->a->size < 10)
 		short_sort(stacks);
 	else
-		if (!backtrack(stacks))
-			return (0);
+		radix_sort(stacks);
 	return (1);
 }
 
@@ -51,6 +50,7 @@ static void	opti_and_print_commands(t_stacks_pair *stacks)
 
 	//opti command (not implemented yet)
 	i = 0;
+	// show_stacks(stacks);
 	if (stacks)
 	{
 		while (ft_strncmp(stacks->commands[i], "END", 4))

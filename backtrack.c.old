@@ -1,45 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_stack_sorted.c                                  :+:      :+:    :+:   */
+/*   backtrack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:54:13 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 22:35:47 by alevra           ###   ########lyon.fr   */
+/*   Created: 2022/12/20 18:06:07 by alevra            #+#    #+#             */
+/*   Updated: 2022/12/20 19:24:02 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_stack_reverse_sorted(t_stack *A)
+t_node	*create_first_node(t_stacks_pair *stacks)
 {
-	size_t	i;
+	t_node	*first_node;
 
-	i = 0;
-	while (i + 1 < A->size)
-	{
-		if (A->tab[i + 1] > A->tab[i])
-			return (0);
-		i++;
-	}
-	return (1);
+	first_node = malloc(sizeof(t_node));
+	if (!first_node)
+		return (NULL);
+	first_node->depth = 0;
+	first_node->parent = NULL;
+	first_node->stacks = stacks;
 }
 
-int	is_stack_sorted(t_stack *A)
+int	backtrack(t_stacks_pair *stacks)
 {
-	size_t	i;
-	int		is_sorted;
+	t_node	*first_node;
 
-	i = 0;
-	is_sorted = 1;
-	if (A->size == 0)
-		return (1);
-	while (i + 1 < A->size)
-	{
-		if (A->tab[i + 1] < A->tab[i])
-			is_sorted = 0;
-		i++;
-	}
-	return (is_sorted);
+	first_node = create_first_node(stacks);
+	if (!first_node)
+		return (0);
+	return(1);
+	//stacks should point to the solution
 }
