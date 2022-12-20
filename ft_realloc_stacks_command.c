@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc_commands.c                              :+:      :+:    :+:   */
+/*   ft_realloc_stacks_command.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,14 +17,15 @@ int	ft_realloc_stacks_command(t_stacks_pair *stacks, size_t depth)
 	char	**new_commands;
 	size_t	i;
 	size_t	base_size;
-	
+
 	base_size = 0;
 	i = 0;
 	if (depth >= stacks->commands_tab_size)
 	{
 		if (!stacks->commands_tab_size)
 			base_size = 10;
-		new_commands = malloc(sizeof(char *) * (stacks->commands_tab_size * 2 + base_size));
+		new_commands = malloc(sizeof(char *)
+				* (stacks->commands_tab_size * 2 + base_size));
 		if (!new_commands)
 			return (0);
 		while (i < stacks->commands_tab_size)
