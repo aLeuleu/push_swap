@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 16:16:19 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 16:20:18 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,6 @@
 static void	command_push(const char *command, t_stack *a, t_stack *b);
 static void	command_swap(const char *command, t_stack *a, t_stack *b);
 static void	command_rotate(const char *command, t_stack *a, t_stack *b);
-
-int	ft_realloc_stacks_command(t_stacks_pair *stacks, size_t depth)
-{
-	char	**new_commands;
-	size_t	i;
-	size_t	base_size;
-	
-	base_size = 0;
-	i = 0;
-	if (depth >= stacks->commands_tab_size)
-	{
-		if (!stacks->commands_tab_size)
-			base_size = 10;
-		new_commands = malloc(sizeof(char *) * (stacks->commands_tab_size * 2 + base_size));
-		if (!new_commands)
-			return (0);
-		while (i < stacks->commands_tab_size)
-		{
-			new_commands[i] = ft_strdup(stacks->commands[i]);
-			i++;
-		}	
-		ft_freetab((void **)stacks->commands, (stacks->commands_tab_size - 1));
-		stacks->commands = new_commands;
-		stacks->commands_tab_size = (stacks->commands_tab_size * 2) + base_size;
-		
-	}
-	return (1);
-}
 
 static int	append_command(const char *command, t_stacks_pair *stacks,
 		size_t depth)

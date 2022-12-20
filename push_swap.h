@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 15:01:09 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 16:22:53 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void			ft_freestack(t_stack *a);
 void			replace_values_by_rank(t_stack *A);
 t_stacks_pair	*stacks_dup(t_stacks_pair *src);
 t_stacks_pair	*init_stacks_pair(t_stack	**a, t_stack	**b);
-int				malloc_stacks_tab_and_set_size(t_stacks_pair *stacks, int value);
+int				malloc_stacks_tab_and_set_size(t_stacks_pair *stacks,
+					int value);
+int				ft_realloc_stacks_command(t_stacks_pair *stacks, size_t depth);
 #endif
