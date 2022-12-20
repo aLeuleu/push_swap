@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:41:42 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 15:02:03 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 17:46:17 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	free_node(t_node *node)
 {
 	if (node->stacks->commands)
-		ft_freetab((void **)node->stacks->commands, node->depth - 1); //depth - 1 ? 
+		ft_freetab((void **)node->stacks->commands, node->depth - 1);
 	free(node);
 }
 

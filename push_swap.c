@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 16:17:24 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 18:16:57 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
 	free(splits);
 }
 
-static void	sort_stacks(t_stacks_pair *stacks)
+static int	sort_stacks(t_stacks_pair *stacks)
 {
 	if (is_stack_sorted(stacks->a))
 		return ;
@@ -40,7 +40,9 @@ static void	sort_stacks(t_stacks_pair *stacks)
 	if (stacks->a->size < 10)
 		short_sort(stacks);
 	else
-		radix_sort(stacks);
+		if (!backtrack(stacks))
+			return (0);
+	return (1);
 }
 
 static void	opti_and_print_commands(t_stacks_pair *stacks)
@@ -70,7 +72,7 @@ int	main(int argc, char const *argv[])
 		return (0);
 	stacks = init_stacks_pair(&a, &b);
 	if (!stacks)
-		return (0);
+		return (ft_printf("Error\n"));
 	if (argc > 2 && malloc_stacks_tab_and_set_size(stacks, argc))
 	{
 		while (argc > 1)
@@ -83,7 +85,8 @@ int	main(int argc, char const *argv[])
 	}
 	else if (argc == 2)
 		handle_mono_arg(stacks, argv[1]);
-	sort_stacks(stacks);
+	if (!sort_stacks(stacks))
+		return (ft_printf("Error\n"));
 	opti_and_print_commands(stacks);
 	return (ft_freestacks(stacks), 0);
 }
