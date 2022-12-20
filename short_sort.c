@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:45:33 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/19 16:54:00 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 16:13:00 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	short_sort(t_stacks_pair *stacks)
 	}
 	while (b->size > 0)
 		execute_command("pa", stacks, &stacks, depth++);
+	execute_command("END", stacks, &stacks, depth++);
 }

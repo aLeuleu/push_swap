@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 15:01:53 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 16:16:19 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,25 @@ int	ft_realloc_stacks_command(t_stacks_pair *stacks, size_t depth)
 	char	**new_commands;
 	size_t	i;
 	size_t	base_size;
-
+	
 	base_size = 0;
 	i = 0;
 	if (depth >= stacks->commands_tab_size)
 	{
-		ft_printf("depth(%d) >= stacks commands size (%d)\n", depth, stacks->commands_tab_size);
 		if (!stacks->commands_tab_size)
 			base_size = 10;
 		new_commands = malloc(sizeof(char *) * (stacks->commands_tab_size * 2 + base_size));
 		if (!new_commands)
-			return(0);
+			return (0);
 		while (i < stacks->commands_tab_size)
 		{
-			new_commands[i] = stacks->commands[i];
-		 	i++;
-		}
-		ft_printf("f2 command size : %d\n", stacks->commands_tab_size);			
-		for (size_t k = 0; k < stacks->commands_tab_size; k++)
-		{
-			ft_printf("%d : %c\n", k, stacks->commands[k]);
-		}		
+			new_commands[i] = ft_strdup(stacks->commands[i]);
+			i++;
+		}	
 		ft_freetab((void **)stacks->commands, (stacks->commands_tab_size - 1));
 		stacks->commands = new_commands;
 		stacks->commands_tab_size = (stacks->commands_tab_size * 2) + base_size;
+		
 	}
 	return (1);
 }
@@ -52,15 +47,12 @@ int	ft_realloc_stacks_command(t_stacks_pair *stacks, size_t depth)
 static int	append_command(const char *command, t_stacks_pair *stacks,
 		size_t depth)
 {
-	ft_printf("trying to append \"%s\" with depth : %d \n", command, depth);
-	if (depth > stacks->commands_tab_size)
+	if (depth >= stacks->commands_tab_size)
 	{
-		ft_printf("stack commands size : %d\n", stacks->commands_tab_size);
 		if (!ft_realloc_stacks_command(stacks, depth))
 			return (0);
-		stacks->commands[depth] = ft_strdup(command);
 	}
-	ft_printf("..%d : ok !\n", depth);
+	stacks->commands[depth] = ft_strdup(command);
 	return (1);
 }
 
@@ -79,8 +71,6 @@ int	execute_command(const char *command, t_stacks_pair *old_stacks,
 		return (0);
 	a = res->a;
 	b = res->b;
-	ft_putstr_fd(command, 2);
-	ft_putstr_fd("\n", 2);
 	if (command[0] == 'p')
 		command_push(command, a, b);
 	if (command[0] == 's')

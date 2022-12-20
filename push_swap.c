@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 15:01:19 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 16:17:24 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,19 @@ static void	sort_stacks(t_stacks_pair *stacks)
 
 static void	opti_and_print_commands(t_stacks_pair *stacks)
 {
-	int	i;
+	size_t	i;
 
 	//opti command (not implemented yet)
 	i = 0;
 	if (stacks)
-		while (stacks->commands[i])
-			ft_printf(stacks->commands[i++]);
+	{
+		while (ft_strncmp(stacks->commands[i], "END", 4))
+		{
+			ft_printf(stacks->commands[i]);
+			ft_printf("\n");
+			i++;
+		}
+	}
 }
 
 int	main(int argc, char const *argv[])
