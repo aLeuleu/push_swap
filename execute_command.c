@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 14:54:54 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/20 15:01:53 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,26 @@ int	execute_command(const char *command, t_stacks_pair *old_stacks,
 	t_stack			*b;
 	t_stacks_pair	*res;
 
-	a = stacks->a;
-	b = stacks->b;
-/* 	ft_printf(command);
-	ft_printf("\n");
- */	if (command[0] == 'p')
+	if (old_stacks == *new_stacks)
+		res = *new_stacks;
+	else
+		res = stacks_dup(old_stacks);
+	if (!res)
+		return (0);
+	a = res->a;
+	b = res->b;
+	ft_putstr_fd(command, 2);
+	ft_putstr_fd("\n", 2);
+	if (command[0] == 'p')
 		command_push(command, a, b);
 	if (command[0] == 's')
 		command_swap(command, a, b);
 	if (command[0] == 'r')
 		command_rotate(command, a, b);
-	res = malloc(sizeof(t_stacks_pair));
-	if (!res)
-		return (NULL);
-	cpy_stacks(stacks, res);
-	//make sure cpy went OK
+	if (!append_command(command, res, depth))
+		return (0);
+	*new_stacks = res;
+	return (1);
 }
 
 static void	command_push(const char *command, t_stack *a, t_stack *b)
