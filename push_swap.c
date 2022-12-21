@@ -6,13 +6,82 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 22:39:04 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/21 22:48:51 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
+static int		is_a_number(const char *str);
+static size_t	ft_max(size_t a, size_t b);
+static int		check_args(size_t size, char const *argv[]);
+static int		ft_strequ(char *str1, char *str2);
+static int		how_many_appearance(char *str, char **str_tab);
+static int		handle_mono_arg(t_stacks_pair *stacks, const char *argv1);
+static int		sort_stacks(t_stacks_pair *stacks);
+static void		print_commands(t_stacks_pair *stacks);
+static void		error(void);
+
+
+static int	is_a_number(const char *str)
+{
+	int i;
+
+	if (!(str[0] == '-' || str[0] == '+' || ft_isdigit((int)str[0])))
+		return (0);
+	i = 1;
+	while (str[i])
+		if (!ft_isdigit(str[i++]))
+			return (0);
+	return (1);
+}
+
+static size_t	ft_max(size_t a, size_t b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+static int	check_args(size_t size, char const *argv[])
+{
+	size_t i;
+
+	i = 0;
+	while (i < size)
+		if (!is_a_number(argv[i]) || how_many_appearance((char *)argv[i++], (char **)argv) > 1)
+			return(0);
+	
+	// >INT MAX || < INT_MIN
+	return (1);
+}
+
+static int	ft_strequ(char *str1, char *str2)
+{
+	size_t	str1len;
+	size_t	str2len;
+
+	str1len = ft_strlen(str1);
+	str2len = ft_strlen(str2);
+	if (str1len != str2len || ft_strncmp(str1, str2, ft_max(str1len, str2len)))
+		return (0);
+	return (1);
+}
+
+static int	how_many_appearance(char *str, char **str_tab)
+{
+	size_t	i;
+	int		res;
+
+	i = 0;
+	res = 0;
+	while (str_tab[i])
+		if (ft_strequ((char *)str, (char *) str_tab[i++]))
+			res++;
+	return (res);
+}
+
+static int	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
 {
 	int		j;
 	char	**splits;
@@ -21,7 +90,9 @@ static void	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
 	splits = (ft_split(argv1, ' '));
 	while (*(splits++))
 		stacks->a->size++;
-	splits -= stacks->a->size;
+	splits -= (stacks->a->size + 1);
+	if (!check_args(stacks->a->size, (const char **)splits))
+		return (0);
 	malloc_stacks_tab_and_set_size(stacks, stacks->a->size + 1);
 	while (splits[j] != 0)
 	{
@@ -30,27 +101,26 @@ static void	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
 		j++;
 	}
 	free(splits);
+	return (1);
 }
 
 static int	sort_stacks(t_stacks_pair *stacks)
 {
 	if (is_stack_sorted(stacks->a))
-		return (1);
+		return (execute_command("END", stacks, &stacks, 0));
 	replace_values_by_rank(stacks->a);
-	if (stacks->a->size < 10)
+	if (stacks->a->size < 55)
 		short_sort(stacks);
 	else
 		radix_sort(stacks);
 	return (1);
 }
 
-static void	opti_and_print_commands(t_stacks_pair *stacks)
+static void	print_commands(t_stacks_pair *stacks)
 {
 	size_t	i;
 
-	//opti command (not implemented yet)
 	i = 0;
-	// show_stacks(stacks);
 	if (stacks)
 	{
 		while (ft_strncmp(stacks->commands[i], "END", 4))
@@ -62,6 +132,11 @@ static void	opti_and_print_commands(t_stacks_pair *stacks)
 	}
 }
 
+static void	error()
+{
+	write(2, "Error\n", ft_strlen("Error\n"));
+}
+
 int	main(int argc, char const *argv[])
 {
 	t_stacks_pair	*stacks;
@@ -69,12 +144,15 @@ int	main(int argc, char const *argv[])
 	t_stack			*b;
 
 	if (argc == 1)
-		return (0);
+		return (error(), 0);
 	stacks = init_stacks_pair(&a, &b);
 	if (!stacks)
-		return (ft_printf("Error\n"));
-	if (argc > 2 && malloc_stacks_tab_and_set_size(stacks, argc))
+		return (error(), 0);
+	if (argc > 2)
 	{
+		if (!check_args(argc - 1, argv +1))
+			return(error(), 0);
+		malloc_stacks_tab_and_set_size(stacks, argc);
 		while (argc > 1)
 		{
 			a->tab[argc - 2] = ft_atoi(argv[argc - 1]);
@@ -84,9 +162,10 @@ int	main(int argc, char const *argv[])
 		a->tab[stacks->a->size] = 9999;
 	}
 	else if (argc == 2)
-		handle_mono_arg(stacks, argv[1]);
+		if (!handle_mono_arg(stacks, argv[1]))
+			return (error(), 0);
 	if (!sort_stacks(stacks))
 		return (ft_printf("Error\n"));
-	opti_and_print_commands(stacks);
+	print_commands(stacks);
 	return (ft_freestacks(stacks), 0);
 }
