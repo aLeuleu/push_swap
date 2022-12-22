@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2022/12/20 17:35:03 by alevra           ###   ########lyon.fr    #
+#    Updated: 2022/12/22 14:26:04 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC =	create_new_gen.c			\
 		radix_sort.c				\
 		replace_values_by_rank.c	\
 		rotate.c					\
-		short_sort.c				\
+		select_sort.c				\
 		show_stacks.c				\
 		stacks_dup.c				\
 		swap.c						\

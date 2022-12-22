@@ -6,26 +6,35 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/21 22:48:51 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/22 14:25:31 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static int		is_a_number(const char *str);
-static size_t	ft_max(size_t a, size_t b);
 static int		check_args(size_t size, char const *argv[]);
-static int		ft_strequ(char *str1, char *str2);
+/* static size_t	ft_max(size_t a, size_t b);
+static int		ft_strequ(char *str1, char *str2); */
 static int		how_many_appearance(char *str, char **str_tab);
 static int		handle_mono_arg(t_stacks_pair *stacks, const char *argv1);
 static int		sort_stacks(t_stacks_pair *stacks);
 static void		print_commands(t_stacks_pair *stacks);
 static void		error(void);
+static int		overflow_int(long long nb);
 
+static int	overflow_int(long long nb)
+{
+	if (nb > INT_MAX)
+		return (1);
+	if (nb < INT_MIN)
+		return (-1);
+	return (0);
+}
 
 static int	is_a_number(const char *str)
 {
-	int i;
+	int		i;
 
 	if (!(str[0] == '-' || str[0] == '+' || ft_isdigit((int)str[0])))
 		return (0);
@@ -36,27 +45,31 @@ static int	is_a_number(const char *str)
 	return (1);
 }
 
-static size_t	ft_max(size_t a, size_t b)
+/* static size_t	ft_max(size_t a, size_t b)
 {
 	if (a > b)
 		return (a);
 	return (b);
-}
+} */
 
 static int	check_args(size_t size, char const *argv[])
 {
-	size_t i;
+	size_t		i;
+	long long 	res;
 
 	i = 0;
 	while (i < size)
-		if (!is_a_number(argv[i]) || how_many_appearance((char *)argv[i++], (char **)argv) > 1)
-			return(0);
-	
-	// >INT MAX || < INT_MIN
+	{
+		res = ft_atoll(argv[i]);
+		if (!is_a_number(argv[i])
+			|| how_many_appearance((char *)argv[i++], (char **)argv) > 1
+			|| overflow_int(res))
+			return (0);
+	}
 	return (1);
 }
 
-static int	ft_strequ(char *str1, char *str2)
+/* static int	ft_strequ(char *str1, char *str2)
 {
 	size_t	str1len;
 	size_t	str2len;
@@ -66,7 +79,7 @@ static int	ft_strequ(char *str1, char *str2)
 	if (str1len != str2len || ft_strncmp(str1, str2, ft_max(str1len, str2len)))
 		return (0);
 	return (1);
-}
+} */
 
 static int	how_many_appearance(char *str, char **str_tab)
 {
@@ -76,7 +89,7 @@ static int	how_many_appearance(char *str, char **str_tab)
 	i = 0;
 	res = 0;
 	while (str_tab[i])
-		if (ft_strequ((char *)str, (char *) str_tab[i++]))
+		if (ft_atoll(str) == ft_atoll(str_tab[i++]))
 			res++;
 	return (res);
 }
@@ -110,7 +123,7 @@ static int	sort_stacks(t_stacks_pair *stacks)
 		return (execute_command("END", stacks, &stacks, 0));
 	replace_values_by_rank(stacks->a);
 	if (stacks->a->size < 55)
-		short_sort(stacks);
+		select_sort(stacks);
 	else
 		radix_sort(stacks);
 	return (1);
@@ -144,14 +157,14 @@ int	main(int argc, char const *argv[])
 	t_stack			*b;
 
 	if (argc == 1)
-		return (error(), 0);
+		return (0);
 	stacks = init_stacks_pair(&a, &b);
 	if (!stacks)
 		return (error(), 0);
 	if (argc > 2)
 	{
 		if (!check_args(argc - 1, argv +1))
-			return(error(), 0);
+			return (error(), 0);
 		malloc_stacks_tab_and_set_size(stacks, argc);
 		while (argc > 1)
 		{
@@ -164,7 +177,7 @@ int	main(int argc, char const *argv[])
 	else if (argc == 2)
 		if (!handle_mono_arg(stacks, argv[1]))
 			return (error(), 0);
-	if (!sort_stacks(stacks))
+	if (!sort_stacks(stacks) && stacks->commands_tab_size > 1)
 		return (ft_printf("Error\n"));
 	print_commands(stacks);
 	return (ft_freestacks(stacks), 0);

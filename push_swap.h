@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 17:34:25 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/22 14:14:17 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				execute_command(const char *command, t_stacks_pair *old_stacks,
 void			swap(t_stack *A);
 void			rotate(t_stack *A);
 void			rotate_reverse(t_stack *A);
-void			short_sort(t_stacks_pair *stacks);
+void			select_sort(t_stacks_pair *stacks);
 int				radix_sort(t_stacks_pair *stacks);
 int				get_max_stack(t_stack *A);
 int				get_max_pos_stack(t_stack *A);
