@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_nodes.c                                       :+:      :+:    :+:   */
+/*   how_many_appearance.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 17:47:09 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/23 17:24:19 by alevra           ###   ########lyon.fr   */
+/*   Created: 2022/12/23 17:19:08 by alevra            #+#    #+#             */
+/*   Updated: 2022/12/23 17:34:49 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_printf_tab(int tabs, const char *str, ...)
+int	how_many_appearance(char *str, char **str_tab)
 {
-	va_list	args;
-
-	while (tabs-- > 0)
-		ft_printf("\t");
-	va_start(args, str);
-	ft_printf(str, args);
-	va_end(args);
-}
-
-void	show_nodes(t_node *node)
-{
-	int	i;
-	int	tabs;
+	size_t	i;
+	int		res;
 
 	i = 0;
-	tabs = node->depth;
-	ft_printf_tab(tabs, "depth : %d", node->depth);
-	show_stacks(node->stacks);
+	res = 0;
+	while (str_tab[i])
+		if (ft_atoll(str) == ft_atoll(str_tab[i++]))
+			res++;
+	return (res);
 }

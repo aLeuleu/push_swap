@@ -6,14 +6,15 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:40:04 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 22:28:34 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/23 17:35:47 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_radix_max_index(t_stack *a);
-static size_t	radix_sort_by_index(int index, t_stacks_pair *stacks, size_t depth);
+static int		get_radix_max_index(t_stack *a);
+static size_t	radix_sort_by_index(int index, t_stacks_pair *stacks,
+					size_t depth);
 
 int	radix_sort(t_stacks_pair *stacks)
 {
@@ -32,7 +33,8 @@ int	radix_sort(t_stacks_pair *stacks)
 	return (0);
 }
 
-static size_t	radix_sort_by_index(int index, t_stacks_pair *stacks, size_t depth)
+static size_t	radix_sort_by_index(int index, t_stacks_pair *stacks,
+		size_t depth)
 {
 	int		i;
 	int		size;
@@ -53,7 +55,7 @@ static size_t	radix_sort_by_index(int index, t_stacks_pair *stacks, size_t depth
 	}
 	while (b->size)
 		execute_command("pa", stacks, &stacks, depth++);
-	return(depth);
+	return (depth);
 }
 
 static int	get_radix_max_index(t_stack *a)

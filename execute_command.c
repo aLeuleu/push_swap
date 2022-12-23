@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/23 13:07:13 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/23 17:34:11 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	append_command(const char *command, t_stacks_pair *stacks,
 {
 	if (depth >= stacks->commands_tab_size)
 	{
-		if (!ft_realloc_stacks_command(stacks, depth))
+		if (!realloc_stacks_command(stacks, depth))
 			return (0);
 	}
 	stacks->commands[depth] = ft_strdup(command);

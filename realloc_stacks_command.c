@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc_stacks_command.c                              :+:      :+:    :+:   */
+/*   realloc_stacks_command.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 16:21:02 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 16:21:45 by alevra           ###   ########lyon.fr   */
+/*   Created: 2022/12/23 17:34:25 by alevra            #+#    #+#             */
+/*   Updated: 2022/12/23 17:34:31 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_realloc_stacks_command(t_stacks_pair *stacks, size_t depth)
+int	realloc_stacks_command(t_stacks_pair *stacks, size_t depth)
 {
 	char	**new_commands;
 	size_t	i;

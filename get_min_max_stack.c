@@ -6,13 +6,13 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:06:49 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 15:15:40 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/23 17:50:03 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_max_stack(t_stack *A)
+int	get_max(t_stack *A)
 {
 	size_t	i;
 	int		max;
@@ -28,11 +28,11 @@ int	get_max_stack(t_stack *A)
 	return (max);
 }
 
-int	get_max_pos_stack(t_stack *A)
+size_t	get_max_pos_stack(t_stack *A)
 {
 	size_t	i;
 	int		max;
-	int		pos;
+	size_t	pos;
 
 	max = A->tab[0];
 	pos = 0;
@@ -49,7 +49,7 @@ int	get_max_pos_stack(t_stack *A)
 	return (pos);
 }
 
-int	get_min_stack(t_stack *A)
+int	get_min(t_stack *A)
 {
 	size_t	i;
 	int		min;
@@ -65,11 +65,11 @@ int	get_min_stack(t_stack *A)
 	return (min);
 }
 
-int	get_min_pos_stack(t_stack *A)
+size_t	get_min_pos_stack(t_stack *A)
 {
 	size_t	i;
 	int		min;
-	int		pos;
+	size_t	pos;
 
 	min = A->tab[0];
 	pos = 0;

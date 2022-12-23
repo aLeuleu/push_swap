@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2022/12/22 14:26:04 by alevra           ###   ########lyon.fr    #
+#    Updated: 2022/12/23 17:52:39 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,12 @@ SRC =	create_new_gen.c			\
 		show_stacks.c				\
 		stacks_dup.c				\
 		swap.c						\
-		ft_realloc_stacks_command.c	\
-
+		realloc_stacks_command.c	\
+		sort_stacks.c				\
+		how_many_appearance.c		\
+		print_commands.c			\
+		
+	
 OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
 FSANITIZE = -fsanitize=address

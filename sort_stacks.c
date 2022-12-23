@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_nodes.c                                       :+:      :+:    :+:   */
+/*   sort_stacks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 17:47:09 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/23 17:24:19 by alevra           ###   ########lyon.fr   */
+/*   Created: 2022/12/23 17:16:57 by alevra            #+#    #+#             */
+/*   Updated: 2022/12/23 17:17:10 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_printf_tab(int tabs, const char *str, ...)
+int	sort_stacks(t_stacks_pair *stacks)
 {
-	va_list	args;
-
-	while (tabs-- > 0)
-		ft_printf("\t");
-	va_start(args, str);
-	ft_printf(str, args);
-	va_end(args);
-}
-
-void	show_nodes(t_node *node)
-{
-	int	i;
-	int	tabs;
-
-	i = 0;
-	tabs = node->depth;
-	ft_printf_tab(tabs, "depth : %d", node->depth);
-	show_stacks(node->stacks);
+	if (is_stack_sorted(stacks->a))
+		return (execute_command("END", stacks, &stacks, 0));
+	replace_values_by_rank(stacks->a);
+	if (stacks->a->size < 55)
+		select_sort(stacks);
+	else
+		radix_sort(stacks);
+	return (1);
 }
