@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:45:33 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/22 14:39:56 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2022/12/23 16:02:58 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ void	select_sort(t_stacks_pair *stacks)
 	depth=0;
 	a = stacks->a;
 	b = stacks->b;
-	show_stacks(stacks);
 	while (a->size != 0)
 	{
-		min = get_min_stack(a);
 		min_pos = get_min_pos_stack(a);
-		if (a->tab[0] == get_max_stack(a) && a->tab[a->size ] == min)
-			execute_command("rra", stacks, &stacks, depth++);
-		if (a->size >= 3 && a->tab[0] > a->tab[1])
+		min = get_min_stack(a);
+		if (a->tab[0] == get_max_stack(a) && a->tab[1] == min)
+			execute_command("ra", stacks, &stacks, depth++);
+		if (a->tab[0] > a->tab[1])
 			execute_command("sa", stacks, &stacks, depth++);
 		if (min_pos + 1 < (a->size) / 2)
 			while (a->tab[0] != min)
@@ -47,3 +46,55 @@ void	select_sort(t_stacks_pair *stacks)
 		execute_command("pa", stacks, &stacks, depth++);
 	execute_command("END", stacks, &stacks, depth++);
 }
+
+# Afficher les dossiers en bleu et en gras avec un slash
+ls -l | grep ^d | awk '{print "\033[1;34m" $9 "/\033[0m"}'
+
+#Affiche tout les fichiers sans extensions en gras et en noir
+ls -1 | grep -v '\.' | awk '{print "\033[1;1m" $1 "\033[0m"}'
+
+# Afficher le fichier Makefile en gras et en jaune
+ls -l | grep Makefile | awk '{print "\033[38;5;255m\033[48;5;226m "$9" \033[0m"}'
+
+# Afficher les fichiers .h en gras et en vert clair
+ls -l | grep ^- | awk '{ if ($9 ~ /\.h$/) { print "\033[1;32m" $9 "\033[0m" } }'
+
+# Afficher les fichiers .c en gras et en vert
+ls -l | grep ^- | awk '{ if ($9 ~ /\.c$/) { print "\033[1;32m" $9 "\033[0m" } }'
+
+# Afficher le reste des fichiers
+ls -l | grep ^- | awk '{ if (!($9 ~ /\.$/) && !($9 ~ /\.$/)) { print $9 } }'
+
+
+
+
+
+ls -l | grep ^d | awk '{print "\033[1;34m" $9 "/\033[0m"}' && ls -1 | grep -v '\.' | awk '{print "\033[1;1m" $1 "\033[0m"}' && ls -l | grep Makefile | awk '{print "\033[38;5;255m\033[48;5;226m "$9" \033[0m"}' && ls -l | grep ^- | awk '{ if ($9 ~ /\.h$/) { print "\033[1;32m" $9 "\033[0m" } }' && ls -l | grep ^- | awk '{ if ($9 ~ /\.c$/) { print "\033[1;32m" $9 "\033[0m" } }' && ls -l | grep ^- | awk '{ if (!($9 ~ /\.h$/) && !($9 ~ /\.c$/)) { print $9 } }'
+
+
+# Afficher les dossiers en bleu et en gras avec un slash
+
+# Affiche tout les fichiers sans extensions en gras et en noir
+
+# Afficher le fichier Makefile en gras et en jaune
+
+# Afficher les fichiers .h en gras et en vert clair
+
+# Afficher les fichiers .c en gras et en vert
+
+# Afficher le reste des fichiers
+
+# Afficher les dossiers en bleu et en gras avec un slash
+ls -d */ | awk '{print "\033[1;34m" $0 "\033[0m"}'
+
+# Afficher le fichier Makefile en gras et en jaune
+ls -l | grep Makefile | awk '{print "\033[38;5;255m\033[48;5;226m "$9" \033[0m"}'
+
+# Afficher les fichiers .h en gras et en vert clair
+ls | grep '\.h$' | awk '{print "\033[1;92m" $0 "\033[0m"}'
+
+# Afficher les fichiers .c en gras et en vert
+ls | grep '\.c$' | awk '{print "\033[1;32m" $0 "\033[0m"}'
+
+# Afficher le reste des fichiers
+ls -p | grep -v / | grep -vE '\.[hc]$|^Makefile$'
