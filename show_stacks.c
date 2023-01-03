@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:46:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/22 14:28:52 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/03 17:40:22 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	show_stacks(t_stacks_pair *stacks)
 	{
 		show_stack_row(a, top_row);
 		show_stack_row(b, top_row);
-		printf("\n");
+		ft_printf("\n");
 		top_row--;
 	}
 	ft_printf("\tA\tB\n");
