@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2022/12/23 18:04:53 by alevra           ###   ########lyon.fr    #
+#    Updated: 2023/01/03 17:20:45 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,22 +18,23 @@ SRC =	create_new_gen.c			\
 		execute_command.c			\
 		ft_freestacks.c				\
 		get_min_max_stack.c			\
+		how_many_appearance.c		\
 		init_stacks_pair.c			\
 		is_stack_sorted.c			\
 		malloc_stacks_tab_and_set_size.c\
+		print_commands.c			\
 		push_swap.c					\
 		push.c						\
 		radix_sort.c				\
+		realloc_stacks_command.c	\
 		replace_values_by_rank.c	\
 		rotate.c					\
 		select_sort.c				\
+		show_nodes.c				\
 		show_stacks.c				\
+		sort_stacks.c				\
 		stacks_dup.c				\
 		swap.c						\
-		realloc_stacks_command.c	\
-		sort_stacks.c				\
-		how_many_appearance.c		\
-		print_commands.c			\
 		
 	
 OBJ = $(addprefix obj/,$(SRC:.c=.o))
