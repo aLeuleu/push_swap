@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2023/01/03 17:20:45 by alevra           ###   ########lyon.fr    #
+#    Updated: 2023/01/04 18:36:58 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME = push_swap
 
 HEADER = $(NAME).h
 
-SRC =	create_new_gen.c			\
-		execute_command.c			\
+SRC =	execute_command.c			\
 		ft_freestacks.c				\
 		get_min_max_stack.c			\
 		how_many_appearance.c		\
@@ -30,8 +29,6 @@ SRC =	create_new_gen.c			\
 		replace_values_by_rank.c	\
 		rotate.c					\
 		select_sort.c				\
-		show_nodes.c				\
-		show_stacks.c				\
 		sort_stacks.c				\
 		stacks_dup.c				\
 		swap.c						\
