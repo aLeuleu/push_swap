@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:34:25 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/23 17:34:31 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 05:09:42 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	realloc_stacks_command(t_stacks_pair *stacks, size_t depth)
 	i = 0;
 	if (depth >= stacks->commands_tab_size)
 	{
-		if (!stacks->commands_tab_size)
-			base_size = 10;
+		if (stacks->commands_tab_size <= 1)
+			base_size = 1;
 		new_commands = malloc(sizeof(char *)
 				* (stacks->commands_tab_size * 2 + base_size));
 		if (!new_commands)
