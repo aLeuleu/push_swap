@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:55:01 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/04 05:11:59 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 05:23:57 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	ft_freestacks(t_stacks_pair *stacks)
 void	ft_freestack(t_stack *a)
 {
 	if (a->tab)
-	{
 		free(a->tab);
-	}
 	free(a);
 }
