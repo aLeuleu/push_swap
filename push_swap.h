@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/04 17:46:58 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 18:01:31 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,20 @@ void				show_stacks(t_stacks_pair *stacks);
 int					execute_command(const char *command,
 						t_stacks_pair *old_stacks, t_stacks_pair **new_stacks,
 						size_t depth);
-void				swap(t_stack *A);
-void				rotate(t_stack *A);
-void				rotate_reverse(t_stack *A);
+void				swap(t_stack *a);
+void				rotate(t_stack *a);
+void				rotate_reverse(t_stack *a);
 void				select_sort(t_stacks_pair *stacks);
 int					radix_sort(t_stacks_pair *stacks);
-int					get_max(t_stack *A);
-size_t				get_max_pos_stack(t_stack *A);
-int					get_min(t_stack *A);
-size_t				get_min_pos_stack(t_stack *A);
-int					is_stack_reverse_sorted(t_stack *A);
-int					is_stack_sorted(t_stack *A);
+int					get_max(t_stack *a);
+size_t				get_max_pos_stack(t_stack *a);
+int					get_min(t_stack *a);
+size_t				get_min_pos_stack(t_stack *a);
+int					is_stack_reverse_sorted(t_stack *a);
+int					is_stack_sorted(t_stack *a);
 void				ft_freestacks(t_stacks_pair *stacks);
 void				ft_freestack(t_stack *a);
-void				replace_values_by_rank(t_stack *A);
+int					replace_values_by_rank(t_stack *a);
 t_stacks_pair		*stacks_dup(t_stacks_pair *src);
 t_stacks_pair		*init_stacks_pair(t_stack **a, t_stack **b);
 int					malloc_stacks_tab_and_set_size(t_stacks_pair *stacks,

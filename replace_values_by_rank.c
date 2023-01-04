@@ -6,45 +6,49 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:58:26 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/17 15:18:17 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 18:01:17 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_rank(t_stack *A, int index);
+static int	get_rank(t_stack *a, int index);
 
-void	replace_values_by_rank(t_stack *A)
+int	replace_values_by_rank(t_stack *a)
 {
-	int		new_tab[A->size];
+	int		*new_tab;
 	size_t	i;
 
 	i = 0;
-	while (i < (A->size))
+	new_tab = malloc(sizeof(int) * a->size);
+	if (!new_tab)
+		return (0);
+	while (i < (a->size))
 	{
-		new_tab[i] = get_rank(A, i);
+		new_tab[i] = get_rank(a, i);
 		i++;
 	}
 	i = 0;
-	while (i < (A->size))
+	while (i < (a->size))
 	{
-		A->tab[i] = new_tab[i];
+		a->tab[i] = new_tab[i];
 		i++;
 	}
+	return (1);
 }
 
-static int	get_rank(t_stack *A, int index)
+static int	get_rank(t_stack *a, int index)
 {
 	int		nb;
 	int		res;
 	size_t	i;
 
-	nb = A->tab[index];
+	nb = a->tab[index];
 	i = 0;
 	res = 0;
-	while (i < (A->size))
+	while (i < (a->size))
 	{
-		if (A->tab[i] < nb)
+		if (a->tab[i] < nb)
 			res++;
 		i++;
 	}
