@@ -6,36 +6,42 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:07:51 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/23 17:20:51 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 04:59:37 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static t_stack	*malloc_stack_and_init(void);
 
 t_stacks_pair	*init_stacks_pair(t_stack **a, t_stack	**b)
 {
 	t_stacks_pair	*res;
 
 	res = malloc(sizeof(t_stacks_pair));
-	*a = malloc(sizeof(t_stack));
-	*b = malloc(sizeof(t_stack));
-	(*b)->size = 0;
-	(*a)->size = 0;
+	if (!res)
+		return (NULL);
+	*a = malloc_stack_and_init();
+	if (!a)
+		return (free(res), NULL);
+	*b = malloc_stack_and_init();
+	if (!b)
+		return (free(res), free(a), NULL);
 	res->a = *a;
 	res->b = *b;
-	if (!res || !res->a || !res->b)
-	{
-		if (res)
-		{
-			if (res->a)
-				free(res->a);
-			if (res->b)
-				free(res->b);
-			free(res);
-		}
-		return (NULL);
-	}
 	res->commands = NULL;
 	res->commands_tab_size = 0;
 	return (res);
+}
+
+static t_stack	*malloc_stack_and_init(void)
+{
+	t_stack	*a;
+
+	a = (t_stack *)malloc(sizeof(t_stack));
+	if (!a)
+		return (NULL);
+	a->tab = NULL;
+	a->size = 0;
+	return (a);
 }
