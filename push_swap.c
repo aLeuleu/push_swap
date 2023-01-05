@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/04 03:37:48 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 23:16:54 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,3 +89,38 @@ int	main(int argc, char const *argv[])
 		return (ft_printf("Error\n"));
 	return (print_commands(stacks), ft_freestacks(stacks), 0);
 }
+
+/*
+
+Mallocated : 
+	stacks :   0x0000000100300050
+	stacks a : 0x0000000100300070
+	stacks b : 0x0000000100300080
+Mallocated :
+    stacks a tab : 0x00000001006015e0
+    stacks b tab : 0x00000001006015e0
+depth : 0
+depth : 1
+freeing : 0x0000000100600460 (tab : 0x0000000100600450, pos : 0)
+depth : 2
+depth : 3
+freeing : 0x0000000100100360 (tab : 0x0000000100601400, pos : 2)
+freeing : 0x0000000100600450 (tab : 0x0000000100601400, pos : 1)
+freeing : 0x0000000100601110 (tab : 0x0000000100601400, pos : 0)
+depth : 4
+freeing : 0x0000000100201c80 (tab : 0x0000000100601350, pos : 5)
+freeing : 0x0000000100201c70 (tab : 0x0000000100601350, pos : 4)
+freeing : 0x0000000100601110 (tab : 0x0000000100601350, pos : 3)
+freeing : 0x0000000100600180 (tab : 0x0000000100601350, pos : 2)
+freeing : 0x0000000100601120 (tab : 0x0000000100601350, pos : 1)
+freeing : 0x0000000100600460 (tab : 0x0000000100601350, pos : 0)
+4
+pb
+ra
+4
+pa
+freeing : 0x0000000100601250 (tab : 0x0000000100200540, pos : 10)
+freeing : 0x0000000100601120 (tab : 0x0000000100200540, pos : 9)
+freeing : 0x0000000100601110 (tab : 0x0000000100200540, pos : 8)
+
+*/

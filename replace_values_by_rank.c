@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:58:26 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/04 18:01:17 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 03:17:19 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	replace_values_by_rank(t_stack *a)
 		a->tab[i] = new_tab[i];
 		i++;
 	}
+	free(new_tab);
 	return (1);
 }
 

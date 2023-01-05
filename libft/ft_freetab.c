@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:42:46 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/20 22:03:06 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 03:15:26 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_freetab(void **tab, int position)
 	{
 		while (position >= 0)
 		{
-			free(tab[position]);
+			if (tab[position])
+				free(tab[position]);
 			position--;
 		}
 	}
