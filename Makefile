@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2023/01/05 07:45:14 by alevra           ###   ########lyon.fr    #
+#    Updated: 2023/01/05 08:43:03 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ clean:
 	@if [ -d "./obj" ]; then\
 		rm -r obj;\
 	fi
+	rm $(NAME)_debug
 	$(MAKE) clean -C libft
 
 fclean: clean
@@ -71,7 +72,7 @@ re:
 	$(MAKE) all
 
 debug : libft/libft.a
-	cc $(FSANITIZE) -Wall -Wextra -Werror $(SRC) -L ./libft -lft -o $(NAME)_debug  && ./$(NAME)_debug $(ARG) && echo "" && ./$(NAME)_debug $(ARG) | ./checker $(ARG) 
+	cc $(FSANITIZE) -Wall -Wextra -Werror $(SRC) -L ./libft -lft -o $(NAME)_debug  && ./$(NAME)_debug $(ARG) && echo "" && ./$(NAME)_debug $(ARG) | ./checker $(ARG) && echo "debug done"
 
 run:
 	./$(NAME) $(ARG)
