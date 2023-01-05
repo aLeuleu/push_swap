@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2023/01/05 07:06:34 by alevra           ###   ########lyon.fr    #
+#    Updated: 2023/01/05 07:45:14 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ libft/libft.a :
 $(NAME):
 	$(MAKE) libft/libft.a
 	$(MAKE) $(OBJ)
-	cc -Wall -Wextra -Werror $(OBJ) -L ./libft -lft -o $(NAME)
+	cc -Wall -Wextra -Werror -g3 $(OBJ) -L ./libft -lft -o $(NAME)
 
 obj/%.o : %.c $(HEADER)
 		cc -c -Wall -Wextra -Werror $< -o $@

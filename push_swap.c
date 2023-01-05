@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/05 07:06:04 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 08:12:57 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int		check_args(size_t size, char const *argv[]);
 static int		handle_mono_arg(t_stacks_pair *stacks, const char *argv1);
 static void		error(void);
+static void		free_splits(char **splits);
 
 static int	check_args(size_t size, char const *argv[])
 {
@@ -44,8 +45,11 @@ static int	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
 		stacks->a->size++;
 	splits -= (stacks->a->size + 1);
 	if (!check_args(stacks->a->size, (const char **)splits))
-		return (0);
-	malloc_stacks_tab_and_set_size(stacks, stacks->a->size + 1);
+	{
+		return (free_splits(splits), 0);
+	}
+	if (!malloc_stacks_tab_and_set_size(stacks, stacks->a->size + 1))
+		return (free_splits(splits), ft_freestacks(stacks), 0);
 	while (splits[j] != 0)
 	{
 		stacks->a->tab[j] = ft_atoi(splits[j]);
@@ -54,6 +58,16 @@ static int	handle_mono_arg(t_stacks_pair *stacks, const char *argv1)
 	}
 	free(splits);
 	return (1);
+}
+
+static void	free_splits(char **splits)
+{
+	int	j;
+
+	j = 0;
+	while (splits[j])
+		free(splits[j++]);
+	free(splits);
 }
 
 static void	error(void)
@@ -73,7 +87,7 @@ int	main(int argc, char const *argv[])
 	if (argc > 2)
 	{
 		if (!check_args(argc - 1, argv +1))
-			return (error(), 0);
+			return (ft_freestacks(stacks), error(), 0);
 		malloc_stacks_tab_and_set_size(stacks, argc);
 		while (argc > 1)
 		{
@@ -84,7 +98,7 @@ int	main(int argc, char const *argv[])
 	}
 	else if (argc == 2)
 		if (!handle_mono_arg(stacks, argv[1]))
-			return (error(), 0);
+			return (ft_freestacks(stacks), error(), 0);
 	if (!sort_stacks(stacks) && argc > 1)
 		return (ft_printf("Error\n"));
 	return (ft_freestacks(stacks), 0);

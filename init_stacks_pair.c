@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:07:51 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/05 07:05:36 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 07:43:46 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ t_stacks_pair	*init_stacks_pair(t_stack **a, t_stack	**b)
 	if (!res)
 		return (NULL);
 	*a = malloc_stack_and_init();
-	if (!a)
+	if (!*a)
 		return (free(res), NULL);
 	*b = malloc_stack_and_init();
-	if (!b)
-		return (free(res), free(a), NULL);
+	if (!*b)
+		return (free(res), free(*a), NULL);
 	res->a = *a;
 	res->b = *b;
 	return (res);

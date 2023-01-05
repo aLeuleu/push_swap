@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:40:04 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/05 07:11:14 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 07:53:12 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	radix_sort(t_stacks_pair *stacks)
 	i = 0;
 	while (i < index)
 		radix_sort_by_index(i++, stacks);
-
 	return (0);
 }
 
