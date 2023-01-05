@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/05 03:31:48 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 07:06:04 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argc, char const *argv[])
 	else if (argc == 2)
 		if (!handle_mono_arg(stacks, argv[1]))
 			return (error(), 0);
-	if (!sort_stacks(stacks) && stacks->commands_tab_size > 1 && argc > 1)
+	if (!sort_stacks(stacks) && argc > 1)
 		return (ft_printf("Error\n"));
-	return (print_commands(stacks), ft_freestacks(stacks), 0);
+	return (ft_freestacks(stacks), 0);
 }

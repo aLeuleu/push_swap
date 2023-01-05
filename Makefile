@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2023/01/05 03:30:43 by alevra           ###   ########lyon.fr    #
+#    Updated: 2023/01/05 07:06:34 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,9 @@ SRC =	execute_command.c			\
 		init_stacks_pair.c			\
 		is_stack_sorted.c			\
 		malloc_stacks_tab_and_set_size.c\
-		print_commands.c			\
 		push_swap.c					\
 		push.c						\
 		radix_sort.c				\
-		realloc_stacks_command.c	\
 		replace_values_by_rank.c	\
 		rotate.c					\
 		select_sort.c				\

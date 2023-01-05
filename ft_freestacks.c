@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:55:01 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/04 05:23:57 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 07:05:29 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	ft_freestacks(t_stacks_pair *stacks)
 		ft_freestack(stacks->a);
 	if (stacks->b)
 		ft_freestack(stacks->b);
-	if (stacks->commands)
-		ft_freetab((void **)stacks->commands, stacks->commands_tab_size - 1);
 	free(stacks);
 }
 

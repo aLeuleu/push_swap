@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:39:20 by alevra            #+#    #+#             */
-/*   Updated: 2022/12/23 17:34:11 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 07:08:48 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,8 @@ static void	command_push(const char *command, t_stack *a, t_stack *b);
 static void	command_swap(const char *command, t_stack *a, t_stack *b);
 static void	command_rotate(const char *command, t_stack *a, t_stack *b);
 
-static int	append_command(const char *command, t_stacks_pair *stacks,
-		size_t depth)
-{
-	if (depth >= stacks->commands_tab_size)
-	{
-		if (!realloc_stacks_command(stacks, depth))
-			return (0);
-	}
-	stacks->commands[depth] = ft_strdup(command);
-	return (1);
-}
-
 int	execute_command(const char *command, t_stacks_pair *old_stacks,
-		t_stacks_pair **new_stacks, size_t depth)
+		t_stacks_pair **new_stacks)
 {
 	t_stack			*a;
 	t_stack			*b;
@@ -49,9 +37,8 @@ int	execute_command(const char *command, t_stacks_pair *old_stacks,
 		command_swap(command, a, b);
 	if (command[0] == 'r')
 		command_rotate(command, a, b);
-	if (!append_command(command, res, depth))
-		return (0);
 	*new_stacks = res;
+	ft_printf("%s\n", command);
 	return (1);
 }
 

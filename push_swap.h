@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:08:51 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/04 18:01:31 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 07:08:56 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,12 @@ typedef struct s_stacks_pair
 {
 	t_stack			*a;
 	t_stack			*b;
-	char			**commands;
-	size_t			commands_tab_size;
 }					t_stacks_pair;
-
-typedef struct s_node
-{
-	struct s_node	*parent;
-	t_stacks_pair	*stacks;
-	size_t			depth;
-}					t_node;
-
-# ifndef NB_COMMANDS
-#  define NB_COMMANDS 11
-# endif
 
 void				push(t_stack *a, t_stack *b);
 void				show_stacks(t_stacks_pair *stacks);
 int					execute_command(const char *command,
-						t_stacks_pair *old_stacks, t_stacks_pair **new_stacks,
-						size_t depth);
+						t_stacks_pair *old_stacks, t_stacks_pair **new_stacks);
 void				swap(t_stack *a);
 void				rotate(t_stack *a);
 void				rotate_reverse(t_stack *a);
@@ -65,8 +51,6 @@ t_stacks_pair		*stacks_dup(t_stacks_pair *src);
 t_stacks_pair		*init_stacks_pair(t_stack **a, t_stack **b);
 int					malloc_stacks_tab_and_set_size(t_stacks_pair *stacks,
 						int value);
-int					realloc_stacks_command(t_stacks_pair *stacks, size_t depth);
 int					how_many_appearance(char *str, char **str_tab);
 int					sort_stacks(t_stacks_pair *stacks);
-void				print_commands(t_stacks_pair *stacks);
 #endif

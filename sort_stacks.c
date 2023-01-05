@@ -6,7 +6,7 @@
 /*   By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:16:57 by alevra            #+#    #+#             */
-/*   Updated: 2023/01/04 18:01:58 by alevra           ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 07:07:11 by alevra           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	sort_stacks(t_stacks_pair *stacks)
 {
 	if (is_stack_sorted(stacks->a))
-		return (execute_command("END", stacks, &stacks, 0));
+		return (1);
 	if (!replace_values_by_rank(stacks->a))
 		return (0);
 	if (stacks->a->size < 55)
