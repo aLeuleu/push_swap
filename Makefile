@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2023/01/05 08:43:03 by alevra           ###   ########lyon.fr    #
+#    Updated: 2023/01/06 03:46:06 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,35 +36,29 @@ OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
 FSANITIZE = -fsanitize=address
 
-all	:
-	@$(MAKE) create_obj_folder 
-	@$(MAKE) $(NAME)
-	@$(MAKE) end_message
+all	: create_obj_folder
+	make -C libft
+	$(MAKE) $(NAME)
+	$(MAKE) end_message
 
-libft/libft.a :
-	$(MAKE) -C libft
+$(NAME): $(OBJ)
+	cc -Wall -Wextra -Werror $(OBJ) -L ./libft -lft -o $(NAME)
 
-$(NAME):
-	$(MAKE) libft/libft.a
-	$(MAKE) $(OBJ)
-	cc -Wall -Wextra -Werror -g3 $(OBJ) -L ./libft -lft -o $(NAME)
-
-obj/%.o : %.c $(HEADER)
+obj/%.o : %.c $(HEADER) Makefile
 		cc -c -Wall -Wextra -Werror $< -o $@
 
 create_obj_folder :
-	@mkdir -p obj
+	mkdir -p obj
 
 clean:
 	rm -f $(OBJ)
 	@if [ -d "./obj" ]; then\
 		rm -r obj;\
 	fi
-	rm $(NAME)_debug
-	$(MAKE) clean -C libft
+	make clean -C libft
 
 fclean: clean
-	$(MAKE) fclean -C libft
+	make fclean -C libft
 	rm -f $(NAME)
 
 re: 
@@ -72,7 +66,7 @@ re:
 	$(MAKE) all
 
 debug : libft/libft.a
-	cc $(FSANITIZE) -Wall -Wextra -Werror $(SRC) -L ./libft -lft -o $(NAME)_debug  && ./$(NAME)_debug $(ARG) && echo "" && ./$(NAME)_debug $(ARG) | ./checker $(ARG) && echo "debug done"
+	cc $(FSANITIZE) -Wall -Wextra -Werror $(SRC) -L ./libft -lft -o $(NAME)_debug  && ./$(NAME)_debug $(ARG) && echo "" && ./$(NAME)_debug $(ARG) | ./checker $(ARG) 
 
 run:
 	./$(NAME) $(ARG)
