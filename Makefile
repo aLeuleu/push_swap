@@ -6,7 +6,7 @@
 #    By: alevra <alevra@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:01:30 by alevra            #+#    #+#              #
-#    Updated: 2023/01/06 03:46:06 by alevra           ###   ########lyon.fr    #
+#    Updated: 2023/01/09 11:45:21 by alevra           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,10 @@ FSANITIZE = -fsanitize=address
 
 all	: create_obj_folder
 	make -C libft
-	$(MAKE) $(NAME)
-	$(MAKE) end_message
+	make $(NAME)
+	@make end_message
 
-$(NAME): $(OBJ)
+$(NAME): libft/libft.a $(OBJ)
 	cc -Wall -Wextra -Werror $(OBJ) -L ./libft -lft -o $(NAME)
 
 obj/%.o : %.c $(HEADER) Makefile
@@ -62,8 +62,8 @@ fclean: clean
 	rm -f $(NAME)
 
 re: 
-	$(MAKE) fclean
-	$(MAKE) all
+	make fclean
+	make all
 
 debug : libft/libft.a
 	cc $(FSANITIZE) -Wall -Wextra -Werror $(SRC) -L ./libft -lft -o $(NAME)_debug  && ./$(NAME)_debug $(ARG) && echo "" && ./$(NAME)_debug $(ARG) | ./checker $(ARG) 
